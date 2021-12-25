@@ -1,0 +1,10 @@
+coverage
+node_modules
+npm-debug.log
+.nyc_output
+.idea
+*.iml
+dist
+standalone
+temp
+src/__tests__/metaverse/**/given/

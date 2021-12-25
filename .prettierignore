@@ -1,0 +1,9 @@
+.github/
+/coverage
+packages/*/dist
+examples/*/dist
+*.json
+CHANGELOG.md
+*.yml
+**/__tests__/fixtures
+**/__tests__/metaverse

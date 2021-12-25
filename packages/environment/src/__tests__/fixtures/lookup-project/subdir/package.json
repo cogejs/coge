@@ -1,0 +1,6 @@
+{
+  "name": "lookup-subdir-dummy-env",
+  "dependencies": {
+    "gen-dummy": "^0.1.2"
+  }
+}

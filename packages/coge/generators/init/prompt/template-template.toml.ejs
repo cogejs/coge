@@ -1,0 +1,10 @@
+---
+to: generators/gen-generator/<%= folder %>/template.toml.ejs
+---
+---
+to: generators/gen-<%%= name %>/<%%= group || folder %>/template.toml
+---
+[[params]]
+type = "input"
+name = "message"
+message = "What's your message?"

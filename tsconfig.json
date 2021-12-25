@@ -1,0 +1,18 @@
+{
+  "extends": "@loopback/build/config/tsconfig.common.json",
+  "compilerOptions": {
+    "composite": true
+  },
+  "references": [
+    {
+      "path": "packages/coge/tsconfig.json"
+    },
+    {
+      "path": "packages/environment/tsconfig.json"
+    },
+    {
+      "path": "packages/generator/tsconfig.json"
+    }
+  ],
+  "files": []
+}

@@ -1,0 +1,19 @@
+---
+to: generators/gen-generator/<%= folder %>/hello.ejs
+---
+---
+to: generators/gen-<%%= name %>/<%%= group || 'gen' %>/hello.js.ejs
+---
+---
+to: app/hello.js
+---
+const hello = ```
+Hello!
+This is your first coge template.
+
+Learn what it can do here:
+
+https://github.com/cogelab/coge
+```
+
+console.log(hello)

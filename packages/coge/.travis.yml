@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '12'
+- '14'
+
+env:
+  global:
+    secure: tTlw9D8NZUwJC7g63sSmZebm77Kt/0AXw2fEsK+ZNKi4WVi2LW/SNO0A4NB4tLY5oMjGuute/W5rgLOiQk4cFOGvrgNtpyOHcjj6euzBeZhdE3H+oFVV9JoVB8HT8c4CkUYqssmyq9gLTs8YroWA5Gqc22fpzZbk57TeBLc2/Kz4QsNgFHCMHyeg35nP4Rr5k9fwy8JslkRQbxJQdGOhxAytsr5p/4wpCVnAjp7K1060g5eL5EY2zx/UFvn7EmRmtIb7nVA0n6dHi0fJsxpon9tfDg6CiMxuVHnfPRIxoOOOwWqdZ0Qw00OBQWvYL2NleydsMvSis/myLq5zfobJ9UYUIsS6BomeYAc293JW6B66xmVx1tenhhJMH8VfMpse8YivXuVbfvb57J0kVCI5sqYPQD2idkbHpbDoHOhnWl+4k+adSX7mA/vwtD0TzWc2sd84WeYZnTlKMtnP/Fhm2dO5araQYjurZ0yW4hrTmbrlZcO8IaXI4KqRb+RtGgJ0/EsMuuT4WYPnDQ+e1gRgN09TinWfY/qG2fA1J6WvwQrmYWhDdWJbnfqwAqY3YtEdoWXYX1/SDh21Mf59s9gVKfqH9w1duBWPjMWQ0qu7LOzCaD474v6/1bPE+ZwmOs65kxLf0IGodbo+1FuoN2WwBWAzAPlJoHcIilsMC6jtgHE=
+
+script: npm test
+jobs:
+  include:
+  - stage: binary releases
+    script: npm run standalone
+    if: tag =~ ^v\d.*
+    node_js: '14'
+    deploy:
+      provider: releases
+      api_key: "$GITHUB_TOKEN"
+      file_glob: true
+      file: standalone/*
+      skip_cleanup: true
+      on:
+        tags: true
