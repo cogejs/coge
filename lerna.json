@@ -17,7 +17,7 @@
       "prefix": false,
       "loglevel": "silent",
       "stream": true,
-      "concurrency": 8,
+      "concurrency": 1,
       "sort": false
     },
     "clean": {

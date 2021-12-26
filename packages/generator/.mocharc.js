@@ -1,5 +1,5 @@
-const {mergeMochaConfigs} = require('@loopback/build');
-const defaultConfig = require('@loopback/build/config/.mocharc.json');
+const {mergeMochaConfigs} = require('@nutol/build');
+const defaultConfig = require('@nutol/build/config/.mocharc.json');
 
 const MONOREPO_CONFIG = {
   parallel: true,

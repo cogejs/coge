@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import {InstallOptions} from '@coge/generator';
 import {render} from './rendering';
 import {resolveOps} from './ops';

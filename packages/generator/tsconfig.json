@@ -1,10 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
-  "extends": "@loopback/build/config/tsconfig.common.json",
+  "extends": "@nutol/build/config/tsconfig.common.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "composite": true
+    "composite": true,
+    "allowJs": true
   },
   "include": [
     "src"

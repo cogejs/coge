@@ -23,18 +23,18 @@
   "scripts": {
     "prerelease": "cross-env CI=1 npm run test",
     "release": "np --no-2fa",
-    "build": "lb-tsc -b",
+    "build": "nb-tsc -b",
     "build:full": "npm ci --ignore-scripts && npm run clean && npm run build",
     "precoverage": "npm test",
-    "coverage": "lb-nyc report --reporter=text-summary",
-    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
+    "coverage": "nb-nyc report --reporter=text-summary",
+    "prettier:cli": "nb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
     "prettier:check": "npm run prettier:cli -- --check",
     "prettier:fix": "npm run prettier:cli -- --write",
     "format": "npm run prettier:fix",
-    "clean": "lb-clean dist coverage .nyc_output *.tsbuildinfo",
+    "clean": "nb-clean dist coverage .nyc_output *.tsbuildinfo",
     "pretest": "npm run clean && npm run format && npm run build",
-    "test": "lb-nyc jest",
-    "test:ci": "lb-nyc jest"
+    "test": "nb-nyc jest",
+    "test:ci": "nb-nyc jest"
   },
   "dependencies": {
     "camelcase": "^6.2.1",
@@ -54,7 +54,7 @@
     "untildify": "^4.0.0"
   },
   "devDependencies": {
-    "@loopback/build": "^8.0.0",
+    "@nutol/build": "^0.2.0",
     "@types/debug": "^4.1.7",
     "@types/diff": "^5.0.2",
     "@types/fs-extra": "^9.0.13",
