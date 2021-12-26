@@ -51,7 +51,7 @@ export class Environment extends Resolver {
 
   protected cwd: string;
   options: Partial<EnvironmentOptions>;
-  adapter?: TerminalAdapter;
+  adapter: TerminalAdapter;
   store: Store;
 
   static get lookups() {
