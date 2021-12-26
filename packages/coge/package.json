@@ -107,5 +107,8 @@
       "node12-linux",
       "node12-win"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
