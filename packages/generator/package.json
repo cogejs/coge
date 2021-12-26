@@ -1,6 +1,6 @@
 {
   "name": "@coge/generator",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Coge generator auxiliary library",
   "repository": {
     "type": "git",
@@ -41,8 +41,8 @@
     "tily": "^2.9.5"
   },
   "devDependencies": {
-    "@nutol/build": "^0.2.0",
     "@loopback/testlab": "^4.0.0",
+    "@nutol/build": "^0.2.0",
     "@types/chalk": "^2.2.0",
     "@types/debug": "^4.1.7",
     "@types/fs-extra": "^9.0.13",
