@@ -4,7 +4,7 @@
   "description": "Coge generator auxiliary library",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cogejs/generator.git"
+    "url": "git+https://github.com/cogejs/coge.git"
   },
   "author": "Yuan Tao <towyuan@outlook.com>",
   "license": "MIT",

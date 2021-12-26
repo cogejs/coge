@@ -3,7 +3,7 @@
   "version": "0.9.1",
   "description": "Handles lookups of generators in a specific environment",
   "license": "MIT",
-  "repository": "https://github.com/cogejs/@coge/environment",
+  "repository": "https://github.com/cogejs/coge",
   "author": "",
   "keywords": [
     "development",
