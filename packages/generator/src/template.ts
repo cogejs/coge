@@ -16,7 +16,9 @@ export interface Templating {
   questions?: (opts: PromptOptions) => Promise<Record<string, any>[]>;
   params?: (opts: PromptOptions) => Promise<any>;
   prompt?: (opts: PromptOptions) => Promise<any>;
-  locals?: (locals: Record<string, any>) => Promise<Record<string, any> | undefined>;
+  locals?: (
+    locals: Record<string, any>,
+  ) => Promise<Record<string, any> | undefined>;
   filter?: (files: string[], locals: Record<string, any>) => Promise<string[]>;
   install?: (opts?: InstallOptions) => Promise<void>;
   end?: () => Promise<void>;
@@ -24,18 +26,26 @@ export interface Templating {
 
 export interface TemplateOptions extends BaseTemplateOptions {}
 
-export class Template extends InstallMixin(SpawnMixin(BaseTemplate)) implements Templating {
+export class Template
+  extends InstallMixin(SpawnMixin(BaseTemplate))
+  implements Templating
+{
   opts: TemplateOptions;
 
   constructor(opts?: TemplateOptions) {
     super(opts);
   }
 
-  async locals(locals: Record<string, any>): Promise<Record<string, any> | undefined> {
+  async locals(
+    locals: Record<string, any>,
+  ): Promise<Record<string, any> | undefined> {
     return locals;
   }
 
-  async filter(files: string[], locals: Record<string, any>): Promise<string[]> {
+  async filter(
+    files: string[],
+    locals: Record<string, any>,
+  ): Promise<string[]> {
     return files;
   }
 

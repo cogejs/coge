@@ -18,12 +18,14 @@ function resolve(
 
 // https://github.com/yarnpkg/yarn/issues/2049#issuecomment-263183768
 const YARN_BASES = {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   win32: ({APPDATA}: any) => `${APPDATA}/Yarn/config/global`,
   darwin: () => '~/.config/yarn/global',
   linux: () => '/usr/local/share/.config/yarn/global',
 };
 
 const NPM_ROOTS = {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   win32: ({APPDATA}: any) => [
     `${APPDATA}/npm/node_modules`,
     `${APPDATA}/roaming/npm/node_modules`,

@@ -3,3 +3,6 @@ dist/
 coverage/
 /sandbox
 **/*.d.ts
+.eslintrc.js
+__tests__/**/*.js
+fixtures

@@ -3,7 +3,7 @@
   "version": "0.10.0",
   "description": "An efficient code generator.",
   "license": "MIT",
-  "repository": "https://github.com/cogelab/coge",
+  "repository": "https://github.com/cogejs/coge",
   "author": "ty <towyuan@outlook.com>",
   "keywords": [
     "coge",
@@ -52,7 +52,6 @@
     "@coge/environment": "^0.9.1",
     "@coge/generator": "^0.5.0",
     "@iarna/toml": "^2.2.5",
-    "cac": "^6.7.12",
     "caporal": "^1.4.0",
     "chalk": "^4",
     "change-case": "^4.1.2",
@@ -74,7 +73,6 @@
   },
   "devDependencies": {
     "@loopback/build": "^8.0.0",
-    "@loopback/eslint-config": "^12.0.0",
     "@types/ejs": "^3.1.0",
     "@types/fs-extra": "^9.0.13",
     "@types/ignore-walk": "^4.0.0",

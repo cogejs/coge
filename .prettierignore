@@ -1,5 +1,5 @@
 .github/
-/coverage
+coverage
 packages/*/dist
 examples/*/dist
 *.json

@@ -5,7 +5,10 @@ import {Templating} from '@coge/generator';
 import {Environment, Meta} from '@coge/environment';
 import {loadTemplateSpecs, TemplateSpecs} from './specs';
 import {ErrorWithInstruction} from '../errors';
-import {AvailableTemplatesForGenerator, GeneratorNotFound} from '../instructions';
+import {
+  AvailableTemplatesForGenerator,
+  GeneratorNotFound,
+} from '../instructions';
 
 export interface TemplateInfo {
   dir: string;
@@ -18,7 +21,11 @@ export interface Template extends Templating {
   _info: TemplateInfo;
 }
 
-export function loadTemplate(env: Environment, namespace: string, opts: any): Template {
+export function loadTemplate(
+  env: Environment,
+  namespace: string,
+  opts: any,
+): Template {
   let generator = '';
   let pattern: string | undefined = undefined;
   let meta = env.get(namespace);
@@ -67,7 +74,11 @@ function create(cwd: string, opts: any): Template {
   return <Template>{};
 }
 
-function notFoundTemplate(env: Environment, namespace: string, generator: string) {
+function notFoundTemplate(
+  env: Environment,
+  namespace: string,
+  generator: string,
+) {
   const installed = !!env.namespaces().find(n => n.startsWith(generator));
   const name = getTemplateName(namespace);
   const hint = getTemplateHint(name);

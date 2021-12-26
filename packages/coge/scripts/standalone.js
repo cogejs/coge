@@ -18,7 +18,7 @@ SHA = "${sha}"
 class Coge < Formula
   desc "An efficient code generator."
   homepage "http://www.coge.dev"
-  url "https://github.com/cogelab/coge/releases/download/v#{VER}/coge.macos.v#{VER}.tar.gz"
+  url "https://github.com/cogejs/coge/releases/download/v#{VER}/coge.macos.v#{VER}.tar.gz"
   version VER
   sha256 SHA
 
@@ -38,10 +38,16 @@ async function main() {
     // give Windows special treatment: it should be a zip file and keep an .exe suffix
     if (plat === 'win.exe') {
       await fs.move(`${wd}/${file}`, `${wd}/tar-${file}/coge.exe`);
-      await execa(`cd ${wd}/tar-${file} && zip ../coge.${plat}.v${v}.zip coge.exe`, {shell: true});
+      await execa(
+        `cd ${wd}/tar-${file} && zip ../coge.${plat}.v${v}.zip coge.exe`,
+        {shell: true},
+      );
     } else {
       await fs.move(`${wd}/${file}`, `${wd}/tar-${file}/coge`);
-      await execa(`cd ${wd}/tar-${file} && tar -czvf ../coge.${plat}.v${v}.tar.gz coge`, {shell: true});
+      await execa(
+        `cd ${wd}/tar-${file} && tar -czvf ../coge.${plat}.v${v}.tar.gz coge`,
+        {shell: true},
+      );
     }
     await fs.remove(`${wd}/tar-${file}`);
   }
@@ -50,9 +56,9 @@ async function main() {
   console.log((await execa(`ls ${wd}`, {shell: true})).stdout);
 
   console.log('standalone: publishing to homebrew tap...');
-  const matches = (await execa(`shasum -a 256 ${wd}/coge.macos.v${v}.tar.gz`, {shell: true})).stdout.match(
-    /([a-f0-9]+)\s+/,
-  );
+  const matches = (
+    await execa(`shasum -a 256 ${wd}/coge.macos.v${v}.tar.gz`, {shell: true})
+  ).stdout.match(/([a-f0-9]+)\s+/);
   console.log(matches);
   if (matches && matches.length > 1) {
     const sha = matches[1];
@@ -73,4 +79,4 @@ async function main() {
   }
 }
 
-(async () => main())();
+main().catch(console.error);

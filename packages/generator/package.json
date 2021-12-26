@@ -4,28 +4,24 @@
   "description": "Coge generator auxiliary library",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cogelab/generator.git"
+    "url": "git+https://github.com/cogejs/generator.git"
   },
   "author": "Yuan Tao <towyuan@outlook.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cogelab/generator/issues"
+    "url": "https://github.com/cogejs/generator/issues"
   },
-  "homepage": "https://github.com/cogelab/generator#readme",
+  "homepage": "https://github.com/cogejs/generator#readme",
   "files": [
     "dist"
   ],
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "prerelease": "cross-env CI=1 npm run test && npm run lint",
+    "prerelease": "cross-env CI=1 npm run test",
     "release": "np --no-2fa",
     "build": "lb-tsc -b",
     "build:full": "npm ci --ignore-scripts && npm run clean && npm run build",
-    "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "eslint": "lb-eslint --report-unused-disable-directives --cache .",
-    "eslint:fix": "npm run eslint -- --fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
     "prettier:check": "npm run prettier:cli -- --check",
     "prettier:fix": "npm run prettier:cli -- --write",
@@ -47,7 +43,6 @@
   },
   "devDependencies": {
     "@loopback/build": "^8.0.0",
-    "@loopback/eslint-config": "^12.0.0",
     "@loopback/testlab": "^4.0.0",
     "@types/chalk": "^2.2.0",
     "@types/debug": "^4.1.7",
@@ -58,13 +53,7 @@
     "@types/rimraf": "^3.0.2",
     "@types/shelljs": "^0.8.10",
     "@types/sinon": "^10.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.8.0",
-    "@typescript-eslint/parser": "^5.8.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.5.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-eslint-plugin": "^4.1.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.5",
     "jest-junit": "^13.0.0",
     "nock": "^13.2.1",

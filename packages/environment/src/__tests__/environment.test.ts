@@ -369,7 +369,7 @@ describe('Environment', () => {
   describe('.enforceUpdate()', () => {
     beforeEach(function () {
       env = new Environment();
-      delete env.adapter;
+      env.adapter = undefined as any;
     });
 
     it('add an adapter', function () {

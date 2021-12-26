@@ -46,7 +46,9 @@ export const render = async (
 
   // read templates
   const entries = await Promise.all(
-    files.map((file: number | fs.PathLike) => fs.readFile(file).then(text => ({file, text: text.toString()}))),
+    files.map((file: number | fs.PathLike) =>
+      fs.readFile(file).then(text => ({file, text: text.toString()})),
+    ),
   );
 
   // parse and render templates
@@ -69,15 +71,24 @@ export const render = async (
 };
 
 async function listFiles(dir: string) {
-  return walk.sync({path: dir, ignoreFiles: ['.cogeignore']}).map((f: string) => path.join(dir, f));
+  return walk
+    .sync({path: dir, ignoreFiles: ['.cogeignore']})
+    .map((f: string) => path.join(dir, f));
 }
 
 function extractFilePath(root: string, file: string) {
-  const trd = path.relative(root, path.dirname(file)) || '.';
-  const folder = last(trd.split(path.sep));
-  return {trd, folder, dir: trd};
+  const templateDir = path.relative(root, path.dirname(file)) || '.';
+  const folder = last(templateDir.split(path.sep));
+  return {templateDir, folder, dir: templateDir};
 }
 
-function renderTemplate(tmpl: any, locals?: Record<string, any>, context?: Context, extra?: Record<string, any>) {
-  return typeof tmpl === 'string' ? ejs.render(tmpl, buildContext(locals, context, extra ?? {})) : tmpl;
+function renderTemplate(
+  tmpl: any,
+  locals?: Record<string, any>,
+  context?: Context,
+  extra?: Record<string, any>,
+) {
+  return typeof tmpl === 'string'
+    ? ejs.render(tmpl, buildContext(locals, context, extra ?? {}))
+    : tmpl;
 }

@@ -7,10 +7,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cogelab/gen-dummytest.git"
+    "url": "git://github.com/cogejs/gen-dummytest.git"
   },
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/cogelab/gen-dummytest/issues"
+    "url": "https://github.com/cogejs/gen-dummytest/issues"
   }
 }

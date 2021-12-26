@@ -30,13 +30,21 @@ async function createProgram(argv: any[], settings?: RunnerSettings) {
   return program.parse(argv);
 }
 
-function registerCommand(program: Caporal, def: CliCmdDefinition, settings?: RunnerSettings) {
-  const cmd = def.default ? program.description(def.description) : program.command(def.name, def.description);
+function registerCommand(
+  program: Caporal,
+  def: CliCmdDefinition,
+  settings?: RunnerSettings,
+) {
+  const cmd = def.default
+    ? program.description(def.description)
+    : program.command(def.name, def.description);
   if (def.alias) {
     cmd.alias(def.alias);
   }
   cmd.action((args: any, opts: any, logger: any) => {
-    const debug = DEBUG_LEVELS.includes(logger?.transports?.caporal?.level?.toLowerCase());
+    const debug = DEBUG_LEVELS.includes(
+      logger?.transports?.caporal?.level?.toLowerCase(),
+    );
     return perform(def.action, {settings, args, opts, debug});
   });
 
@@ -46,7 +54,12 @@ function registerCommand(program: Caporal, def: CliCmdDefinition, settings?: Run
 
   if (def.arguments) {
     for (const a of def.arguments) {
-      const arg = cmd.argument(a.flags, a.description, a.validator, a.defaultValue);
+      const arg = cmd.argument(
+        a.flags,
+        a.description,
+        a.validator,
+        a.defaultValue,
+      );
       if (a.complete) {
         arg.complete(a.complete);
       }
@@ -69,7 +82,10 @@ function registerCommand(program: Caporal, def: CliCmdDefinition, settings?: Run
   }
 }
 
-async function perform(action: CliCmdActionCallback, {args, opts, debug, settings}: PerformOptions) {
+async function perform(
+  action: CliCmdActionCallback,
+  {args, opts, debug, settings}: PerformOptions,
+) {
   settings = settings ?? {};
   return action(
     await DefaultContext.create({

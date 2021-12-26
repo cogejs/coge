@@ -17,7 +17,11 @@ export function SpawnMixin<T extends Constructor<any>>(superClass: T) {
      * @param {object} [opt] any cross-spawn options
      * @return {Promise<String>} spawned process reference
      */
-    async spawn(cmd: string, args?: any[], opt?: Partial<CrossSpawnOptions>): Promise<Uint8Array> {
+    async spawn(
+      cmd: string,
+      args?: any[],
+      opt?: Partial<CrossSpawnOptions>,
+    ): Promise<Uint8Array> {
       opt = opt ?? {};
       return spawn(cmd, args, merge(opt, {stdio: 'inherit'}));
     }

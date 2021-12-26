@@ -104,34 +104,34 @@ export class CogeNamespace implements NamespaceProps, NamespaceFlags {
     this.flags = parsed?.flags ?? this.flags;
   }
 
-  get _scopeAddition() {
+  protected get scopeAddition() {
     return this.scope ? `${this.scope}/` : '';
   }
 
-  get _generatorAddition() {
+  protected get generatorAddition() {
     return this.generator ? `:${this.generator}` : '';
   }
 
-  get _semverAddition() {
+  protected get semverAddition() {
     return this.semver ? `@${this.semver}@` : '';
   }
 
-  get _idAddition() {
+  protected get idAddition() {
     return this.instanceId ? `+${this.instanceId}` : '';
   }
 
   get complete() {
-    return `${this.namespace}${this._semverAddition}${this._idAddition}${
+    return `${this.namespace}${this.semverAddition}${this.idAddition}${
       this.flags || ''
     }`;
   }
 
   get packageNamespace() {
-    return `${this._scopeAddition}${this.unscoped}`;
+    return `${this.scopeAddition}${this.unscoped}`;
   }
 
   get namespace() {
-    return `${this.packageNamespace}${this._generatorAddition}`;
+    return `${this.packageNamespace}${this.generatorAddition}`;
   }
 
   set namespace(namespace) {
@@ -139,11 +139,11 @@ export class CogeNamespace implements NamespaceProps, NamespaceFlags {
   }
 
   get id() {
-    return `${this.namespace}${this._idAddition}`;
+    return `${this.namespace}${this.idAddition}`;
   }
 
   get generatorHint() {
-    return `${this._scopeAddition}gen-${this.unscoped}`;
+    return `${this.scopeAddition}gen-${this.unscoped}`;
   }
 
   get versionedHint() {

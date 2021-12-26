@@ -37,7 +37,9 @@ export function availableGenerators(env: Environment, prefix?: string) {
 
   return Object.keys(generators)
     .map(generator => {
-      const groups = generators[generator].map((group: any) => `    ${group}`).join('\n');
+      const groups = generators[generator]
+        .map((group: any) => `    ${group}`)
+        .join('\n');
       return `  ${generator}${groups.trim() ? '\n' + groups : ''}`;
     })
     .join('\n');

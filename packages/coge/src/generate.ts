@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import * as chalk from 'chalk';
 import {InstallOptions} from '@coge/generator';
 import {render} from './rendering';
@@ -19,7 +17,11 @@ export interface GenerateOptions {
   skipInstall?: boolean;
 }
 
-export async function generate(context: Context, generator: string, opts: GenerateOptions) {
+export async function generate(
+  context: Context,
+  generator: string,
+  opts: GenerateOptions,
+) {
   const {logger} = context.env.adapter!;
   try {
     const actions = await doGenerate(context, generator, opts);
@@ -39,7 +41,11 @@ export async function generate(context: Context, generator: string, opts: Genera
   }
 }
 
-async function doGenerate(context: Context, generator: string, opts: GenerateOptions & InstallOptions) {
+async function doGenerate(
+  context: Context,
+  generator: string,
+  opts: GenerateOptions & InstallOptions,
+) {
   const {cwd, env} = context;
   const {logger} = env.adapter!;
 

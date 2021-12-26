@@ -33,7 +33,9 @@ export const git = {
     }
 
     if (shell.which('git')) {
-      name = shell.exec('git config --get user.name', {silent: true}).stdout.trim();
+      name = shell
+        .exec('git config --get user.name', {silent: true})
+        .stdout.trim();
       nameCache.set(process.cwd(), name);
     }
 
@@ -53,7 +55,9 @@ export const git = {
     }
 
     if (shell.which('git')) {
-      email = shell.exec('git config --get user.email', {silent: true}).stdout.trim();
+      email = shell
+        .exec('git config --get user.email', {silent: true})
+        .stdout.trim();
       emailCache.set(process.cwd(), email);
     }
 

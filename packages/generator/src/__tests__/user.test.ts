@@ -22,7 +22,7 @@ describe('module#user', function () {
     process.chdir(tmpdir);
     shell.exec('git init --quiet');
     shell.exec('git config --local user.name Coge');
-    shell.exec('git config --local user.email coge@cogelab.com');
+    shell.exec('git config --local user.email coge@cogejs.com');
   });
 
   afterEach(function (done) {
@@ -66,7 +66,7 @@ describe('module#user', function () {
 
     describe('.email()', () => {
       it('is the email used by git', function () {
-        expect(user.git.email()).toEqual('coge@cogelab.com');
+        expect(user.git.email()).toEqual('coge@cogejs.com');
       });
 
       it('handle cache', function () {

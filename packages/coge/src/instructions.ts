@@ -16,18 +16,26 @@ $ coge generator:new coco
 
 $ coge coco:gen
 
-See https://github.com/cogelab/coge for more.
+See https://github.com/cogejs/coge for more.
 `;
 
-export const GeneratorNotFound = (env: Environment, name: string, module: string) => `
+export const GeneratorNotFound = (
+  env: Environment,
+  name: string,
+  module: string,
+) => `
 Help is on the way:
 
-  1. You can see available generators via ${chalk.yellow('npm search @coge/generator')}.
+  1. You can see available generators via ${chalk.yellow(
+    'npm search @coge/generator',
+  )}.
      Install them with ${chalk.yellow('npm install ' + module)}.
 
   2. You can try:
      1) ${chalk.yellow('coge init')} to initialize your project, and
-     2) ${chalk.yellow('coge generator:new ' + name)} to build the generator you wanted.
+     2) ${chalk.yellow(
+       'coge generator:new ' + name,
+     )} to build the generator you wanted.
 
 To see all your installed generators run ${chalk.yellow('coge list')}.
 
@@ -36,6 +44,10 @@ If ${chalk.yellow('coge list')} cannot find the generator, run ${chalk.yellow(
 )} to troubleshoot your system.
 `;
 
-export const AvailableTemplatesForGenerator = (env: Environment, name: string, module: string) => `
+export const AvailableTemplatesForGenerator = (
+  env: Environment,
+  name: string,
+  module: string,
+) => `
 Available Generators in ${chalk.yellow(module)}:
 ${availableGenerators(env, name)}`;

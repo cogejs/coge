@@ -11,8 +11,13 @@ const opts = {compareContent: true};
 const SKIP_ON_WINDOWS = process.platform === 'win32' ? ['shell'] : [];
 
 const dir = (m: string) => path.join(__dirname, 'metaverse', m);
-const run = async (argv: any[], settings: RunnerSettings) => cli(['node', 'coge', ...argv], settings);
-const metaverse = (folder: string, cmds: any[][], promptResponse: Record<string, any>) =>
+const run = async (argv: any[], settings: RunnerSettings) =>
+  cli(['node', 'coge', ...argv], settings);
+const metaverse = (
+  folder: string,
+  cmds: any[][],
+  promptResponse: Record<string, any>,
+) =>
   it(
     folder,
     async () => {
@@ -23,7 +28,10 @@ const metaverse = (folder: string, cmds: any[][], promptResponse: Record<string,
       console.log('before', fs.readdirSync(metaDir));
       for (let cmd of cmds) {
         console.log('testing', cmd);
-        if (process.platform === 'win32' && SKIP_ON_WINDOWS.find(c => cmd[0] === c)) {
+        if (
+          process.platform === 'win32' &&
+          SKIP_ON_WINDOWS.find(c => cmd[0] === c)
+        ) {
           console.log(`skipping ${cmd} (windows!)`);
           await fs.remove(path.join(metaDir, 'expected', <string>cmd[0]));
           continue;
@@ -85,13 +93,26 @@ describe('metaverse', () => {
       ['add-unless-exists:new', '-D', 'message=foo'],
       ['cli-prefill-prompt-vars:new', '-D', 'message-from-cli=hello-from-cli'],
       ['cli-prefill-prompt-vars:name-is-special', 'foobar'],
-      ['cli-prefill-prompt-vars:falsy-values-are-ok', 'foobar', '-D', 'include_something=false'],
+      [
+        'cli-prefill-prompt-vars:falsy-values-are-ok',
+        'foobar',
+        '-D',
+        'include_something=false',
+      ],
       ['recursive-prompt:new'],
       ['positional-name:new', 'acmecorp'],
       ['existing-params:new', '-D', 'email=premade-email@foobar.com'],
-      ['existing-params:new-params-alias', '-D', 'email=premade-email@foobar.com'],
+      [
+        'existing-params:new-params-alias',
+        '-D',
+        'email=premade-email@foobar.com',
+      ],
       ['index-js-existing-params:new', '-D', 'email=premade-email@foobar.com'],
-      ['index-js-existing-params:new-params-alias', '-D', 'email=premade-email@foobar.com'],
+      [
+        'index-js-existing-params:new-params-alias',
+        '-D',
+        'email=premade-email@foobar.com',
+      ],
       ['filter:app'],
     ],
     // this is all of the responses enquirer gives out from _all_ tests, ever.

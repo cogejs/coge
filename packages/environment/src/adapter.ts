@@ -12,6 +12,13 @@ export interface PromptModule {
 
 export type PromptCallback<T> = (answers: T) => void;
 
+export interface ColorsByOptions {
+  added: chalk.Chalk;
+  removed: chalk.Chalk;
+}
+
+export type ColorOptions = keyof ColorsByOptions;
+
 export interface Adapter {
   prompt<T>(questions: object | object[], cb?: PromptCallback<T>): Promise<T>;
 
@@ -45,6 +52,11 @@ export class TerminalAdapter implements Adapter {
   console: Console;
   logger: Logger;
 
+  colorDiff: ColorsByOptions = {
+    added: chalk.black.bgGreen,
+    removed: chalk.bgRed,
+  };
+
   constructor(options?: TerminalAdapterOptions) {
     options = options ?? {};
     const stdout = options.stdout ?? process.stdout;
@@ -57,18 +69,10 @@ export class TerminalAdapter implements Adapter {
     this.logger = new Logger({console: this.console, stdout: options.stdout});
   }
 
-  get _colorDiffAdded() {
-    return chalk.black.bgGreen;
-  }
-
-  get _colorDiffRemoved() {
-    return chalk.bgRed;
-  }
-
-  _colorLines(name: string, str: string) {
+  protected colorLines(name: ColorOptions, str: string) {
     return str
       .split('\n')
-      .map((line: any) => (this as any)[`_colorDiff${name}`](line))
+      .map((line: string) => this.colorDiff[name](line))
       .join('\n');
   }
 
@@ -108,11 +112,11 @@ export class TerminalAdapter implements Adapter {
       .diffLines(actual, expected)
       .map((str: diff.Change) => {
         if (str.added) {
-          return this._colorLines('Added', str.value);
+          return this.colorLines('added', str.value);
         }
 
         if (str.removed) {
-          return this._colorLines('Removed', str.value);
+          return this.colorLines('removed', str.value);
         }
 
         return str.value;
@@ -122,9 +126,9 @@ export class TerminalAdapter implements Adapter {
     // Legend
     msg =
       '\n' +
-      this._colorDiffRemoved('removed') +
+      this.colorDiff.removed('removed') +
       ' ' +
-      this._colorDiffAdded('added') +
+      this.colorDiff.added('added') +
       '\n\n' +
       msg +
       '\n';

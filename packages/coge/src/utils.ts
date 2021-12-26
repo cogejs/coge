@@ -51,7 +51,10 @@ function isObject(obj: unknown) {
   return typeof obj === 'object' && obj !== null;
 }
 
-export function assign(target: {[x: string]: any; cwd?: string}, ...sources: any[]) {
+export function assign(
+  target: {[x: string]: any; cwd?: string},
+  ...sources: any[]
+) {
   for (const source of sources) {
     if (!sources) continue;
     for (const key of Object.keys(source)) {
