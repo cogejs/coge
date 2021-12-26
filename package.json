@@ -13,7 +13,7 @@
     "postinstall": "husky install && npm run -s bootstrap && npm run -s update-ts-project-refs",
     "update-ts-project-refs": "nb-update-ts-project-refs",
     "update-packages": "npm run -s update-package-locks",
-    "prerelease": "npm run build:full && cross-env CI=1 npm run jest && npm run lint",
+    "prerelease": "cross-env CI=1 lerna run test && npm run lint",
     "release": "cross-env CI=1 lerna version && lerna publish from-git --yes",
     "update-package-locks": "node nb-rebuild-package-locks",
     "update-package-deps": "node nb-update-package-deps",

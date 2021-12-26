@@ -25,7 +25,6 @@
     "prettier:cli": "nb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
     "prettier:check": "npm run prettier:cli -- --check",
     "prettier:fix": "npm run prettier:cli -- --write",
-    "format": "npm run prettier:fix",
     "clean": "nb-clean dist sample-ts-node-module*.tgz *.tsbuildinfo",
     "pretest": "npm run build",
     "test": "jest"
