@@ -68,6 +68,7 @@ Object {
       "underscore": [Function],
       "version": "1.13.1",
     },
+    "stringify": [Function],
   },
   "name": "foobar",
   "targetDir": "",

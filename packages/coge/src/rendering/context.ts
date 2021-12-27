@@ -2,17 +2,17 @@ import * as inflection from 'inflection';
 import * as changeCase from 'change-case';
 
 import {Context} from '../types';
-import {undasherize} from '../utils';
+import {stringify, undasherize} from '../utils';
 
 // supports kebab-case to KebabCase
 (inflection as any).undasherize = undasherize;
 
 const helpers = {
-  capitalize(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  },
+  capitalize: (s: string) =>
+    s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(),
   inflection,
   changeCase,
+  stringify,
 };
 
 const doCapitalization = (hsh: {[x: string]: any}, [key, value]: any) => {
@@ -28,10 +28,10 @@ const localsToCapitalize = ['name'];
 const localsDefaults = {
   name: 'unnamed',
   group: '',
-  templateFolder: '', // the folder name of the template file
   folder: '', // the short name of templateDir
-  templateDir: '', // the relative directory to template root
+  templateFolder: '', // the folder name of the template file
   dir: '', // the short name of templateDir
+  templateDir: '', // the relative directory to template root
   targetDir: '', // the target directory relative to cwd
 };
 

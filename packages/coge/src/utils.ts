@@ -1,9 +1,40 @@
+import repeatString from 'repeat-string';
+
 export function undasherize(str: string, lowFirstLetter?: boolean) {
   const answer = str
     .split(/[-_]/)
     .map(w => w[0].toUpperCase() + w.slice(1).toLowerCase())
     .join('');
   return lowFirstLetter ? answer[0].toLowerCase() + answer.slice(1) : answer;
+}
+
+export interface StringifyIndentOpts {
+  indent: number;
+  begin?: number; // line from
+  end?: number; // line to
+}
+
+export function stringify(
+  target: any,
+  space?: number,
+  indent?: number,
+  begin?: number,
+  end?: number,
+) {
+  const lines = JSON.stringify(target, null, space);
+  if (!indent) return lines;
+  begin = begin ?? 0;
+  end = end ?? Infinity;
+  return lines
+    .split('\n')
+    .map((line, index) => {
+      let prefix = '';
+      if (index >= begin! && index < end!) {
+        prefix = repeatString(' ', indent);
+      }
+      return prefix + line;
+    })
+    .join('\n');
 }
 
 /**

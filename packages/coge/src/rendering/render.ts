@@ -2,10 +2,10 @@ import * as fs from 'fs-extra';
 import * as ejs from 'ejs';
 import * as path from 'path';
 import * as walk from 'ignore-walk';
-import {Context, RenderedAction} from '../types';
-
-import {buildContext} from './context';
 import last from 'tily/array/last';
+
+import {Context, RenderedAction} from '../types';
+import {buildContext} from './context';
 import {Template} from '../template';
 
 const fm = require('front-matter');
@@ -78,8 +78,13 @@ async function listFiles(dir: string) {
 
 function extractFilePath(root: string, file: string) {
   const templateDir = path.relative(root, path.dirname(file)) || '.';
-  const folder = last(templateDir.split(path.sep));
-  return {templateDir, folder, dir: templateDir};
+  const templateFolder = last(templateDir.split(path.sep));
+  return {
+    templateDir,
+    templateFolder,
+    dir: templateDir,
+    folder: templateFolder,
+  };
 }
 
 function renderTemplate(
