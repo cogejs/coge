@@ -39,7 +39,7 @@
     "standalone": "rimraf standalone; npm run build && pkg package.json --out-path standalone && npm run standalone:postprocess",
     "standalone:postprocess": "node scripts/standalone.js",
     "standalone:brew-sha": "shasum -a 256 standalone/*.macos.*.tar.gz",
-    "clean": "nb-clean dist",
+    "clean": "nb-clean dist *.tsbuildinfo",
     "build": "nb-tsc -b",
     "build:full": "npm ci --ignore-scripts && npm run clean && npm run build",
     "test": "npm run build && npm run test:code && npm run test:require",
