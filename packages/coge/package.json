@@ -1,6 +1,6 @@
 {
   "name": "coge",
-  "version": "0.11.3",
+  "version": "0.11.4",
   "description": "An efficient code generator.",
   "license": "MIT",
   "repository": "https://github.com/cogejs/coge",
@@ -49,8 +49,8 @@
     "test:require": "mkdirp temp; cd temp; node ../dist/cli.timed.js init; cd ..; rm -rf temp"
   },
   "dependencies": {
-    "@coge/environment": "^0.10.2",
-    "@coge/generator": "^0.6.2",
+    "@coge/environment": "^0.10.3",
+    "@coge/generator": "^0.6.3",
     "@iarna/toml": "^2.2.5",
     "caporal": "^1.4.0",
     "chalk": "^4",
