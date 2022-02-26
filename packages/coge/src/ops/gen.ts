@@ -90,7 +90,6 @@ async function resolveConflict(
   const overwrite = await overwritePrompt(
     prompter,
     chalk.red(`Conflict on ${to}.`),
-    to,
   );
   if (overwrite !== 'diff') {
     return overwrite;
@@ -102,7 +101,6 @@ async function resolveConflict(
 async function overwritePrompt(
   prompter: Prompter<any, any>,
   message: string,
-  to: string,
 ) {
   return prompter
     .prompt({
