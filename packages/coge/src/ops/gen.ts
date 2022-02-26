@@ -18,7 +18,7 @@ export async function gen(
   } = session;
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    attributes: {to, inject, unless_exists},
+    attributes: {to, inject, unless_exists, skip_if},
   } = action;
   const {logger} = env.adapter!;
   const prompter = env.adapter;
@@ -34,6 +34,11 @@ export async function gen(
     ? (await fs.readFile(absTo)).toString('utf8')
     : undefined;
   const identical = exists && content === action.body;
+
+  if (skip_if) {
+    logger.skip(to);
+    return result('skipped');
+  }
 
   if (exists && !identical) {
     if (!process.env.COGE_OVERWRITE && !opts.force && !session.overwrite) {
