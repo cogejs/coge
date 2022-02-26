@@ -1,6 +1,7 @@
 import assign from 'tily/assign';
 import dargs from 'dargs';
 import chalk from 'chalk';
+import fse from 'fs-extra';
 import {Constructor} from '../types';
 
 export interface InstallOptions {
@@ -213,7 +214,22 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
       options: any,
       spawnOptions?: any,
     ) {
+      await this.yarnUpgrade(spawnOptions);
       return this.scheduleInstall('yarn', pkgs, options, spawnOptions);
+    }
+
+    async yarnUpgrade(spawnOptions?: any) {
+      // upgrade yarn from 1.x
+      if (!fse.existsSync('.yarn')) {
+        await this.spawn('yarn', ['set', 'version', 'berry'], spawnOptions);
+        await this.spawn('yarn', ['set', 'version', 'stable'], spawnOptions);
+        await this.spawn(
+          'yarn',
+          ['plugin', 'import', 'interactive-tools'],
+          spawnOptions,
+        );
+        await this.spawn('git', ['add', '.yarn'], spawnOptions);
+      }
     }
   };
 }
