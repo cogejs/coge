@@ -3,6 +3,7 @@ import dargs from 'dargs';
 import chalk from 'chalk';
 import fse from 'fs-extra';
 import {Constructor} from '../types';
+import {dump, load} from 'js-yaml';
 
 export interface InstallOptions {
   npm?: boolean | Record<string, any>;
@@ -220,6 +221,13 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
 
     async yarnUpgrade(spawnOptions?: any) {
       if (!fse.existsSync('.yarn')) {
+        const rcfile = '.yarnrc.yml';
+
+        let rc: Record<string, any> = {};
+        if (fse.existsSync(rcfile)) {
+          rc = load(fse.readFileSync(rcfile, 'utf8')) as Record<string, any>;
+        }
+
         await this.spawn('yarn', ['set', 'version', 'berry'], spawnOptions);
         await this.spawn('yarn', ['set', 'version', 'stable'], spawnOptions);
         await this.spawn(
@@ -228,6 +236,15 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
           spawnOptions,
         );
         await this.spawn('git', ['add', '.yarn'], spawnOptions);
+
+        if (fse.existsSync(rcfile)) {
+          rc = {
+            ...rc,
+            ...(load(fse.readFileSync(rcfile, 'utf8')) as Record<string, any>),
+          };
+        }
+
+        fse.writeFileSync(rcfile, dump(rc));
       }
     }
   };
