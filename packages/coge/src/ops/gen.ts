@@ -1,11 +1,12 @@
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import chalk from 'chalk';
+import isTrue from 'tily/isTrue';
 
 import {Environment} from '@coge/environment';
 import {GenerateOptions} from '../generate';
-import {OpResult, OpSession, Prompter, RenderedAction} from '../types';
 
+import {OpResult, OpSession, Prompter, RenderedAction} from '../types';
 import {createResult} from '../utils';
 
 export async function gen(
@@ -27,15 +28,14 @@ export async function gen(
     return result('ignored');
   }
   const absTo = path.resolve(cwd, to);
-  const shouldNotOverwrite =
-    unless_exists !== undefined && unless_exists === true;
+  const shouldNotOverwrite = isTrue(unless_exists);
   const exists = await fs.pathExists(absTo);
   const content = exists
     ? (await fs.readFile(absTo)).toString('utf8')
     : undefined;
   const identical = exists && content === action.body;
 
-  if (skip_if) {
+  if (isTrue(skip_if)) {
     logger.skip(to);
     return result('skipped');
   }
