@@ -98,10 +98,7 @@ async function resolveConflict(
   return resolveConflict(env, prompter, to, oldBody, newBody);
 }
 
-async function overwritePrompt(
-  prompter: Prompter<any, any>,
-  message: string,
-) {
+async function overwritePrompt(prompter: Prompter<any, any>, message: string) {
   return prompter
     .prompt({
       type: 'expand',
