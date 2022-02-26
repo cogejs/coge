@@ -1,6 +1,6 @@
 {
   "name": "@coge/generator",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Coge generator auxiliary library",
   "repository": {
     "type": "git",
