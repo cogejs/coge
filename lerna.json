@@ -1,4 +1,7 @@
 {
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "packages": [
     "examples/*",
     "packages/*"
@@ -25,6 +28,5 @@
       "concurrency": 8,
       "yes": true
     }
-  },
-  "version": "independent"
+  }
 }

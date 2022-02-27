@@ -9,41 +9,34 @@
   "author": "ty",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "postinstall": "husky install && npm run -s bootstrap && npm run -s update-ts-project-refs",
-    "update-ts-project-refs": "nb-update-ts-project-refs",
-    "update-packages": "npm run -s update-package-locks",
-    "prerelease": "cross-env CI=1 lerna run test && npm run lint",
+    "link-workspaces": "nb-lnw",
+    "postinstall": "husky install && yarn run link-workspaces && yarn run build",
+    "prerelease": "yarn run build:full && yarn run lint",
     "release": "cross-env CI=1 lerna version && lerna publish from-git --yes",
-    "update-package-locks": "nb-rebuild-package-locks",
-    "update-package-deps": "nb-update-package-deps",
-    "update-all-deps": "npm update && lerna exec -- npm update && npm run update-package-locks",
-    "version": "npm run update-package-deps",
-    "outdated": "npm outdated --depth 0 && lerna exec --no-bail \"npm outdated --depth 0\"",
-    "lint": "npm run eslint",
-    "lint:fix": "npm run eslint:fix",
+    "lint": "yarn run eslint",
+    "lint:fix": "yarn run eslint:fix",
     "eslint": "nb-eslint --report-unused-disable-directives --cache .",
-    "eslint:fix": "npm run eslint -- --fix",
+    "eslint:fix": "yarn run eslint --fix",
     "prettier:cli": "nb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
-    "prettier:check": "npm run prettier:cli -- --check",
-    "prettier:fix": "npm run prettier:cli -- --write",
-    "clean": "lerna run clean && nb-clean \"packages/*/dist\"",
+    "prettier:check": "yarn run prettier:cli --check",
+    "prettier:fix": "yarn run prettier:cli --write",
+    "clean": "lerna run clean",
     "clean:lerna": "lerna clean",
-    "prebuild": "npm run prettier:fix",
-    "build": "lerna run build",
-    "build:ci": "lerna run build",
-    "build:full": "npm ci --ignore-scripts && lerna bootstrap --ci && npm run clean && npm run build",
-    "pretest": "npm run clean && npm run build",
-    "test": "lerna run test",
-    "test:ci": "lerna run test",
-    "posttest": "npm run lint"
+    "build": "lerna run build --sort",
+    "build:full": "yarn install --frozen-lockfile --ignore-scripts && yarn run clean && yarn run build",
+    "prebuild": "yarn run link-workspaces",
+    "pretest": "yarn run clean && yarn run prettier:fix && yarn run build",
+    "test": "yarn run jest",
+    "test:ci": "jest --collectCoverage --coverageDirectory=\"./coverage\" --reporters=default --reporters=jest-junit --watchAll=false",
+    "jest": "jest",
+    "posttest": "yarn run lint"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@commitlint/travis-cli": "^16.2.1",
     "@nutol/build": "^0.2.4",
-    "@nutol/eslint-config": "^12.0.0",
+    "@nutol/eslint-config": "^0.2.1",
     "@nutol/monorepo": "^0.2.2",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
@@ -78,5 +71,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@3.2.0"
 }

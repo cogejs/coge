@@ -1,4 +1,19 @@
+# Cache
+.eslintcache
 .idea
+.npm
+.vscode
+.yarnclean
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 lerna-debug.log
 node_modules
 npm-debug.log
@@ -12,5 +27,3 @@ examples/*/dist
 .sandbox
 *.tsbuildinfo
 
-# ESLint cache
-.eslintcache
