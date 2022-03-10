@@ -51,9 +51,7 @@ describe('Environment', () => {
       simplePath = path.join(__dirname, 'fixtures/gen-simple');
       extendPath = path.join(__dirname, './fixtures/gen-extend/support');
       expect(env.namespaces().length).toBe(0);
-      env
-        .register(simplePath, 'fixtures:gen-simple', simplePath)
-        .register(extendPath, 'scaffold');
+      env.register(simplePath, 'fixtures:gen-simple', simplePath).register(extendPath, 'scaffold');
     });
 
     it('store registered generators', function () {
@@ -103,15 +101,9 @@ describe('Environment', () => {
       expect(env.getPackagePath('fixtures:gen-simple')).toBe(simplePath);
       expect(env.getPackagePath('fixtures')).toBe('new-path');
       // With alias
-      expect(env.getPackagePath('prefix-fixtures:gen-simple')).toBe(
-        env.getPackagePath('fixtures:gen-simple'),
-      );
-      expect(env.getPackagePath('prefix-fixtures')).toBe(
-        env.getPackagePath('fixtures'),
-      );
-      expect(env.getPackagePaths('prefix-fixtures')).toEqual(
-        env.getPackagePaths('fixtures'),
-      );
+      expect(env.getPackagePath('prefix-fixtures:gen-simple')).toBe(env.getPackagePath('fixtures:gen-simple'));
+      expect(env.getPackagePath('prefix-fixtures')).toBe(env.getPackagePath('fixtures'));
+      expect(env.getPackagePaths('prefix-fixtures')).toEqual(env.getPackagePaths('fixtures'));
     });
   });
 
@@ -120,18 +112,11 @@ describe('Environment', () => {
       env
         .register(path.join(__dirname, './fixtures/gen-simple'))
         .register(path.join(__dirname, './fixtures/gen-extend/support'))
-        .register(
-          path.join(__dirname, './fixtures/gen-extend/support'),
-          'support:scaffold',
-        );
+        .register(path.join(__dirname, './fixtures/gen-extend/support'), 'support:scaffold');
     });
 
     it('get the list of namespaces', function () {
-      expect(env.namespaces()).toEqual([
-        'simple',
-        'extend:support',
-        'support:scaffold',
-      ]);
+      expect(env.namespaces()).toEqual(['simple', 'extend:support', 'support:scaffold']);
     });
   });
 
@@ -173,36 +158,20 @@ describe('Environment', () => {
       expect(env.namespace('backbone.js')).toBe('backbone');
 
       expect(env.namespace('gen-backbone/all.js')).toBe('backbone:all');
-      expect(env.namespace('gen-mocha/backbone/model/index.js')).toBe(
-        'mocha:backbone:model',
-      );
-      expect(env.namespace('gen-mocha/backbone/model.js')).toBe(
-        'mocha:backbone:model',
-      );
-      expect(env.namespace('node_modules/gen-mocha/backbone/model.js')).toBe(
-        'mocha:backbone:model',
-      );
-      expect(env.namespace('../node_modules/gen-mocha/backbone/model.js')).toBe(
-        'mocha:backbone:model',
-      );
-      expect(env.namespace('../gen-mocha/backbone/model.js')).toBe(
-        'mocha:backbone:model',
-      );
+      expect(env.namespace('gen-mocha/backbone/model/index.js')).toBe('mocha:backbone:model');
+      expect(env.namespace('gen-mocha/backbone/model.js')).toBe('mocha:backbone:model');
+      expect(env.namespace('node_modules/gen-mocha/backbone/model.js')).toBe('mocha:backbone:model');
+      expect(env.namespace('../node_modules/gen-mocha/backbone/model.js')).toBe('mocha:backbone:model');
+      expect(env.namespace('../gen-mocha/backbone/model.js')).toBe('mocha:backbone:model');
     });
 
     it('create namespace from scoped path', function () {
-      expect(env.namespace('@dummyscope/gen-backbone/all.js')).toBe(
-        '@dummyscope/backbone:all',
-      );
-      expect(
-        env.namespace('@dummyscope/gen-mocha/backbone/model/index.js'),
-      ).toBe('@dummyscope/mocha:backbone:model');
-      expect(env.namespace('@dummyscope/gen-mocha/backbone/model.js')).toBe(
+      expect(env.namespace('@dummyscope/gen-backbone/all.js')).toBe('@dummyscope/backbone:all');
+      expect(env.namespace('@dummyscope/gen-mocha/backbone/model/index.js')).toBe('@dummyscope/mocha:backbone:model');
+      expect(env.namespace('@dummyscope/gen-mocha/backbone/model.js')).toBe('@dummyscope/mocha:backbone:model');
+      expect(env.namespace('/node_modules/@dummyscope/gen-mocha/backbone/model.js')).toBe(
         '@dummyscope/mocha:backbone:model',
       );
-      expect(
-        env.namespace('/node_modules/@dummyscope/gen-mocha/backbone/model.js'),
-      ).toBe('@dummyscope/mocha:backbone:model');
     });
 
     it('handle relative paths', function () {
@@ -216,9 +185,7 @@ describe('Environment', () => {
       expect(env.namespace('////gen/all')).toBe('gen:all');
       expect(env.namespace('gen-backbone///all.js')).toBe('backbone:all');
       expect(env.namespace('gen-backbone/././all.js')).toBe('backbone:all');
-      expect(env.namespace('gen-backbone/gen-backbone/all.js')).toBe(
-        'backbone:all',
-      );
+      expect(env.namespace('gen-backbone/gen-backbone/all.js')).toBe('backbone:all');
     });
 
     it("works with Windows' paths", function () {
@@ -228,40 +195,24 @@ describe('Environment', () => {
     });
 
     it('remove lookups from namespace', function () {
-      expect(env.namespace('backbone/generators/all/index.js')).toBe(
-        'backbone:all',
-      );
-      expect(env.namespace('backbone/lib/generators/all/index.js')).toBe(
-        'backbone:all',
-      );
-      expect(env.namespace('some-lib/generators/all/index.js')).toBe(
-        'some-lib:all',
-      );
-      expect(env.namespace('my.thing/generators/app/index.js')).toBe(
-        'my.thing:app',
-      );
-      expect(env.namespace('meta/generators/generators-thing/index.js')).toBe(
-        'meta:generators-thing',
-      );
+      expect(env.namespace('backbone/generators/all/index.js')).toBe('backbone:all');
+      expect(env.namespace('backbone/lib/generators/all/index.js')).toBe('backbone:all');
+      expect(env.namespace('some-lib/generators/all/index.js')).toBe('some-lib:all');
+      expect(env.namespace('my.thing/generators/app/index.js')).toBe('my.thing:app');
+      expect(env.namespace('meta/generators/generators-thing/index.js')).toBe('meta:generators-thing');
     });
 
     it('remove path before the generator name', function () {
-      expect(
-        env.namespace(
-          '/Users/yeoman/.nvm/v0.10.22/lib/node_modules/gen-backbone/all/index.js',
-        ),
-      ).toBe('backbone:all');
-      expect(
-        env.namespace('/usr/lib/node_modules/gen-backbone/all/index.js'),
-      ).toBe('backbone:all');
+      expect(env.namespace('/Users/yeoman/.nvm/v0.10.22/lib/node_modules/gen-backbone/all/index.js')).toBe(
+        'backbone:all',
+      );
+      expect(env.namespace('/usr/lib/node_modules/gen-backbone/all/index.js')).toBe('backbone:all');
     });
 
     it('handle paths when multiples lookups are in it', function () {
-      expect(
-        env.namespace(
-          'c:\\projects\\yeoman\\generators\\gen-example\\generators\\app\\index.js',
-        ),
-      ).toBe('example:app');
+      expect(env.namespace('c:\\projects\\yeoman\\generators\\gen-example\\generators\\app\\index.js')).toBe(
+        'example:app',
+      );
     });
 
     it('handles namespaces', function () {
@@ -271,14 +222,10 @@ describe('Environment', () => {
   });
 
   describe('#get()', () => {
-    const generator = path.resolve(
-      path.join(__dirname, './fixtures/gen-mocha'),
-    );
+    const generator = path.resolve(path.join(__dirname, './fixtures/gen-mocha'));
 
     beforeEach(function () {
-      env
-        .register(generator, 'mocha:generator')
-        .register(generator, 'fixtures:gen-mocha');
+      env.register(generator, 'mocha:generator').register(generator, 'fixtures:gen-mocha');
     });
 
     it('get a specific generator', function () {
@@ -292,10 +239,7 @@ describe('Environment', () => {
     });
 
     it('fallback to requiring generator from a file path', function () {
-      assertGenerator(
-        env.get(path.join(__dirname, './fixtures/gen-mocha'))!,
-        generator,
-      );
+      assertGenerator(env.get(path.join(__dirname, './fixtures/gen-mocha'))!, generator);
     });
 
     it('returns undefined if namespace is not found', function () {
@@ -304,14 +248,8 @@ describe('Environment', () => {
     });
 
     it('works with modules', function () {
-      env.register(
-        path.join(__dirname, './fixtures/gen-module/generators/app'),
-        'fixtures:gen-module',
-      );
-      assertGenerator(
-        env.get('fixtures:gen-module')!,
-        path.join(__dirname, './fixtures/gen-module/generators/app'),
-      );
+      env.register(path.join(__dirname, './fixtures/gen-module/generators/app'), 'fixtures:gen-module');
+      assertGenerator(env.get('fixtures:gen-module')!, path.join(__dirname, './fixtures/gen-module/generators/app'));
     });
   });
 
@@ -342,9 +280,7 @@ describe('Environment', () => {
       expect(env.alias('prefix-foo')).toBe('foo:app');
       expect(env.alias('prefix-mocha:generator')).toBe('mocha:generator');
       expect(env.alias('prefix-fixtures:gen-mocha')).toBe('fixtures:gen-mocha');
-      expect(env.alias('@scoped/prefix-fixtures:gen-mocha')).toBe(
-        '@scoped/fixtures:gen-mocha',
-      );
+      expect(env.alias('@scoped/prefix-fixtures:gen-mocha')).toBe('@scoped/fixtures:gen-mocha');
     });
   });
 
@@ -353,9 +289,7 @@ describe('Environment', () => {
     beforeEach(function () {
       generator = path.join(__dirname, './fixtures/gen-mocha');
       env.alias(/^prefix-(.*)$/, '$1');
-      env
-        .register(generator, 'fixtures:gen-mocha')
-        .register(generator, 'mocha:generator');
+      env.register(generator, 'fixtures:gen-mocha').register(generator, 'mocha:generator');
     });
 
     it('get a specific generator', function () {

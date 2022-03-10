@@ -149,9 +149,7 @@ describe('TerminalAdapter', () => {
 
     it('#write() accepts util#format style arguments', function () {
       adapter.logger.write('A number: %d, a string: %s', 1, 'bla');
-      expect(
-        spylog.withArgs('A number: 1, a string: bla').calledOnce,
-      ).toBeTruthy();
+      expect(spylog.withArgs('A number: 1, a string: bla').calledOnce).toBeTruthy();
     });
 
     it('#writeln() adds a \\n at the end', function () {
@@ -162,16 +160,12 @@ describe('TerminalAdapter', () => {
 
     it('#colorful() writes colorful texts', function () {
       adapter.logger.colorful('{green dummy}');
-      expect(
-        spylog.withArgs(`${chalk.green('dummy')}\n`).calledOnce,
-      ).toBeTruthy();
+      expect(spylog.withArgs(`${chalk.green('dummy')}\n`).calledOnce).toBeTruthy();
     });
 
     it('#ok() adds a green "✔ " at the beginning and \\n at the end', function () {
       adapter.logger.ok('dummy');
-      expect(
-        spylog.withArgs(`${logSymbols.success} dummy\n`).calledOnce,
-      ).toBeTruthy();
+      expect(spylog.withArgs(`${logSymbols.success} dummy\n`).calledOnce).toBeTruthy();
     });
 
     it('#error() adds a green "✗ " at the beginning and \\n at the end', function () {

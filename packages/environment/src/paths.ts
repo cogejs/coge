@@ -7,13 +7,8 @@ import {execaOutput} from './util';
 
 const os = process.platform;
 
-function resolve(
-  paths: Record<string, (opts: any) => string | string[]>,
-  opts: any,
-) {
-  return paths[os]
-    ? toArray(paths[os](opts)).map(p => path.resolve(untildify(p)))
-    : [];
+function resolve(paths: Record<string, (opts: any) => string | string[]>, opts: any) {
+  return paths[os] ? toArray(paths[os](opts)).map(p => path.resolve(untildify(p))) : [];
 }
 
 // https://github.com/yarnpkg/yarn/issues/2049#issuecomment-263183768
@@ -26,10 +21,7 @@ const YARN_BASES = {
 
 const NPM_ROOTS = {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  win32: ({APPDATA}: any) => [
-    `${APPDATA}/npm/node_modules`,
-    `${APPDATA}/roaming/npm/node_modules`,
-  ],
+  win32: ({APPDATA}: any) => [`${APPDATA}/npm/node_modules`, `${APPDATA}/roaming/npm/node_modules`],
   darwin: () => '/usr/local/lib/node_modules',
   linux: () => '/usr/local/lib/node_modules',
 };
@@ -37,9 +29,7 @@ const NPM_ROOTS = {
 export const resolveYarnBase = (ask?: boolean): string[] => {
   let result: string[];
   if (ask) {
-    result = toArray(
-      execaOutput('yarn', ['global', 'dir'], {encoding: 'utf8'}),
-    );
+    result = toArray(execaOutput('yarn', ['global', 'dir'], {encoding: 'utf8'}));
   } else {
     result = resolve(YARN_BASES, process.env);
   }

@@ -121,9 +121,7 @@ export class CogeNamespace implements NamespaceProps, NamespaceFlags {
   }
 
   get complete() {
-    return `${this.namespace}${this.semverAddition}${this.idAddition}${
-      this.flags || ''
-    }`;
+    return `${this.namespace}${this.semverAddition}${this.idAddition}${this.flags || ''}`;
   }
 
   get packageNamespace() {
@@ -147,9 +145,7 @@ export class CogeNamespace implements NamespaceProps, NamespaceFlags {
   }
 
   get versionedHint() {
-    return this.semver
-      ? `${this.generatorHint}@"${this.semver}"`
-      : this.generatorHint;
+    return this.semver ? `${this.generatorHint}@"${this.semver}"` : this.generatorHint;
   }
 
   get methodName() {
@@ -210,9 +206,7 @@ export function parseNamespace(namespace: string) {
  * @return {CogeNamespace}
  */
 export function toNamespace(this: any, namespace: string | CogeNamespace) {
-  return this.isNamespace(namespace)
-    ? namespace
-    : this.parseNamespace(namespace);
+  return this.isNamespace(namespace) ? namespace : this.parseNamespace(namespace);
 }
 
 /**

@@ -10,8 +10,7 @@ export const gen: CliCmdDefinition = {
   arguments: [
     {
       flags: '<generator>',
-      description:
-        'The template used to generate with formula <generator[:group][:pattern]>',
+      description: 'The template used to generate with formula <generator[:group][:pattern]>',
     },
     {
       flags: '[name]',
@@ -50,23 +49,15 @@ export const gen: CliCmdDefinition = {
     },
     {
       flags: '--skip-install',
-      description:
-        'Skip install for the generators that support npm/yarn installation after code generating',
+      description: 'Skip install for the generators that support npm/yarn installation after code generating',
     },
   ],
 };
 
-async function action(
-  context: Context,
-  args: {[p: string]: any},
-  opts: {[p: string]: any},
-) {
+async function action(context: Context, args: {[p: string]: any}, opts: {[p: string]: any}) {
   const {generator} = args;
   const {group, targetDir} = opts;
   const name = opts.name ?? args.name;
-  opts.attrs = Object.assign(
-    {name, group, targetDir},
-    AttrsResolver.resolve(opts.data),
-  );
+  opts.attrs = Object.assign({name, group, targetDir}, AttrsResolver.resolve(opts.data));
   return generate(context, generator, opts);
 }

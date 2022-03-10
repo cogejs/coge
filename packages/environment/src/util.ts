@@ -16,11 +16,7 @@ export function duplicateEnv(initialEnv: object) {
   return Object.create(initialEnv);
 }
 
-export function execaOutput(
-  cmd: string,
-  args?: string[],
-  options?: SyncOptions<string>,
-): string {
+export function execaOutput(cmd: string, args?: string[], options?: SyncOptions<string>): string {
   try {
     const result = execaSync(cmd, args, options);
     if (!result.failed) {

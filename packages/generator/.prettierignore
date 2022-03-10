@@ -1,7 +1,0 @@
-.github/
-/coverage
-**/.sandbox
-dist
-*.json
-CHANGELOG.md
-*.yml

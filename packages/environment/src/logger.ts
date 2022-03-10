@@ -167,16 +167,12 @@ export class Logger implements StatusLogger<Logger> {
   // Convenience helper to write sucess status, this simply prepends the
   // message with a gren `✔`.
   ok(fmt: any, ...args: any[]) {
-    this.write(
-      logSymbols.success + ' ' + util.format.apply(util, [fmt, ...args]) + '\n',
-    );
+    this.write(logSymbols.success + ' ' + util.format.apply(util, [fmt, ...args]) + '\n');
     return this;
   }
 
   error(fmt: any, ...args: any[]) {
-    this.write(
-      logSymbols.error + ' ' + util.format.apply(util, [fmt, ...args]) + '\n',
-    );
+    this.write(logSymbols.error + ' ' + util.format.apply(util, [fmt, ...args]) + '\n');
     return this;
   }
 

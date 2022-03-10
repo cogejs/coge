@@ -3,14 +3,7 @@ import * as path from 'path';
 import assert from 'assert';
 import {Environment} from '../environment';
 import {execaOutput} from '../util';
-import {
-  assertGenerator,
-  exec,
-  fslinkDir,
-  fsunlink,
-  npmLinkFixtures,
-  npmUnlinkFixtures,
-} from './support';
+import {assertGenerator, exec, fslinkDir, fsunlink, npmLinkFixtures, npmUnlinkFixtures} from './support';
 import {LookupOptions} from '../resolver';
 
 const globalLookupTest = process.env.NODE_PATH ? it : xit;
@@ -74,12 +67,8 @@ describe('Environment Resolver', function () {
       expect(env.get('dummy:app')).toBeTruthy();
       expect(env.get('dummy:coge')).toBeTruthy();
 
-      expect(
-        env.get('dummy:app')!.packagePath!.endsWith('node_modules/gen-dummy'),
-      ).toBeTruthy();
-      expect(
-        env.get('dummy:app')!.packagePath!.endsWith('node_modules/gen-dummy'),
-      ).toBeTruthy();
+      expect(env.get('dummy:app')!.packagePath!.endsWith('node_modules/gen-dummy')).toBeTruthy();
+      expect(env.get('dummy:app')!.packagePath!.endsWith('node_modules/gen-dummy')).toBeTruthy();
     }, 60000);
 
     it('registers local ts generators', function () {
@@ -87,10 +76,7 @@ describe('Environment Resolver', function () {
     });
 
     it('js generators takes precedence', function () {
-      assertGenerator(
-        env.get('ts-js:app')!,
-        './fixtures/gen-ts-js/generators/app/template.toml',
-      );
+      assertGenerator(env.get('ts-js:app')!, './fixtures/gen-ts-js/generators/app/template.toml');
     });
 
     it('register generators in scoped packages', function () {
@@ -102,9 +88,7 @@ describe('Environment Resolver', function () {
     });
 
     if (!process.env.NODE_PATH) {
-      console.log(
-        'Skipping tests for global generators. Please setup `NODE_PATH` environment variable to run it.',
-      );
+      console.log('Skipping tests for global generators. Please setup `NODE_PATH` environment variable to run it.');
     }
 
     it('local generators prioritized over global', function () {
@@ -168,12 +152,8 @@ describe('Environment Resolver', function () {
         expect(env.get('dummy:app')).toBeTruthy();
         expect(env.get('dummy:coge')).toBeTruthy();
 
-        expect(
-          env.get('dummy:app')!.packagePath!.endsWith('/gen-dummy'),
-        ).toBeTruthy();
-        expect(
-          env.get('dummy:app')!.packagePath!.endsWith('/gen-dummy'),
-        ).toBeTruthy();
+        expect(env.get('dummy:app')!.packagePath!.endsWith('/gen-dummy')).toBeTruthy();
+        expect(env.get('dummy:app')!.packagePath!.endsWith('/gen-dummy')).toBeTruthy();
       });
 
       it('registers local ts generators', function () {
@@ -181,10 +161,7 @@ describe('Environment Resolver', function () {
       });
 
       it('js generators takes precedence', function () {
-        assertGenerator(
-          env.get('ts-js:app')!,
-          './fixtures/gen-ts-js/generators/app/template.toml',
-        );
+        assertGenerator(env.get('ts-js:app')!, './fixtures/gen-ts-js/generators/app/template.toml');
       });
 
       it('register generators in scoped packages', function () {
@@ -192,9 +169,7 @@ describe('Environment Resolver', function () {
       });
 
       if (!process.env.NODE_PATH) {
-        console.log(
-          'Skipping tests for global generators. Please setup `NODE_PATH` environment variable to run it.',
-        );
+        console.log('Skipping tests for global generators. Please setup `NODE_PATH` environment variable to run it.');
       }
 
       it('local generators prioritized over global', function () {
@@ -292,19 +267,10 @@ describe('Environment Resolver', function () {
         fs.mkdirSync(generatorScope);
       }
 
-      links.push(
-        fslinkDir('../gen-scoped', path.join(generatorScope, 'gen-scoped')),
-      );
-      links.push(
-        fslinkDir(
-          '../gen-module-lib-gen',
-          path.join(npmPath, 'gen-module-lib-gen'),
-        ),
-      );
+      links.push(fslinkDir('../gen-scoped', path.join(generatorScope, 'gen-scoped')));
+      links.push(fslinkDir('../gen-module-lib-gen', path.join(npmPath, 'gen-module-lib-gen')));
       links.push(fslinkDir('../gen-module', path.join(npmPath, 'gen-module')));
-      links.push(
-        fslinkDir('../gen-module-root', path.join(npmPath, 'gen-module-root')),
-      );
+      links.push(fslinkDir('../gen-module-root', path.join(npmPath, 'gen-module-root')));
     });
 
     beforeEach(function () {
@@ -330,10 +296,7 @@ describe('Environment Resolver', function () {
 
     it('with 2 packagePaths', function () {
       env.lookup({
-        packagePaths: [
-          'node_modules/gen-module',
-          'node_modules/gen-module-root',
-        ],
+        packagePaths: ['node_modules/gen-module', 'node_modules/gen-module-root'],
       });
       expect(env.get('module:app')).toBeTruthy();
       expect(env.get('module-root:app')).toBeTruthy();
@@ -342,11 +305,7 @@ describe('Environment Resolver', function () {
 
     it('with 3 packagePaths', function () {
       env.lookup({
-        packagePaths: [
-          'node_modules/gen-module',
-          'node_modules/gen-module-root',
-          'node_modules/gen-module-lib-gen',
-        ],
+        packagePaths: ['node_modules/gen-module', 'node_modules/gen-module-root', 'node_modules/gen-module-lib-gen'],
       });
       expect(env.get('module:app')).toBeTruthy();
       expect(env.get('module-root:app')).toBeTruthy();
@@ -447,11 +406,7 @@ describe('Environment Resolver', function () {
       it('walk up the CWD lookups dir', function () {
         // const paths = env.getNpmPaths();
         expect(paths[0]).toBe(path.join(process.cwd(), 'node_modules'));
-        const prevdir = process
-          .cwd()
-          .split(path.sep)
-          .slice(0, -1)
-          .join(path.sep);
+        const prevdir = process.cwd().split(path.sep).slice(0, -1).join(path.sep);
         expect(paths[1]).toBe(path.join(prevdir, 'node_modules'));
       });
 
@@ -462,9 +417,7 @@ describe('Environment Resolver', function () {
 
       it('append default NPM dir depending on your OS', function () {
         if (process.platform === 'win32') {
-          assert(
-            paths.includes(path.join(process.env.APPDATA!, 'npm/node_modules')),
-          );
+          assert(paths.includes(path.join(process.env.APPDATA!, 'npm/node_modules')));
         } else {
           assert(paths.includes('/usr/lib/node_modules'));
         }
@@ -487,13 +440,7 @@ describe('Environment Resolver', function () {
       });
 
       it('append NVM_PATH', function () {
-        assert(
-          env
-            .getNpmPaths()
-            .includes(
-              path.join(path.dirname(process.env.NVM_PATH!), 'node_modules'),
-            ),
-        );
+        assert(env.getNpmPaths().includes(path.join(path.dirname(process.env.NVM_PATH!), 'node_modules')));
       });
     });
 
@@ -533,13 +480,7 @@ describe('Environment Resolver', function () {
 
       it('does not append NVM_PATH', function () {
         process.env.NVM_PATH = '/some/dummy/path';
-        assert(
-          !env
-            .getNpmPaths(true)
-            .includes(
-              path.join(path.dirname(process.env.NVM_PATH), 'node_modules'),
-            ),
-        );
+        assert(!env.getNpmPaths(true).includes(path.join(path.dirname(process.env.NVM_PATH), 'node_modules')));
       });
 
       it('does not append best bet', function () {
@@ -548,11 +489,7 @@ describe('Environment Resolver', function () {
 
       it('does not append default NPM dir depending on your OS', function () {
         if (process.platform === 'win32') {
-          assert(
-            !env
-              .getNpmPaths(true)
-              .includes(path.join(process.env.APPDATA!, 'npm/node_modules')),
-          );
+          assert(!env.getNpmPaths(true).includes(path.join(process.env.APPDATA!, 'npm/node_modules')));
         } else {
           assert(!env.getNpmPaths(true).includes('/usr/lib/node_modules'));
         }
@@ -563,16 +500,9 @@ describe('Environment Resolver', function () {
       it('append npm modules path depending on your OS', function () {
         const npmPrefix = execaOutput('npm', ['prefix', '-g']);
         if (process.platform === 'win32') {
-          assert(
-            env.getNpmPaths().indexOf(path.resolve(npmPrefix, 'node_modules')) >
-              0,
-          );
+          assert(env.getNpmPaths().indexOf(path.resolve(npmPrefix, 'node_modules')) > 0);
         } else {
-          assert(
-            env
-              .getNpmPaths()
-              .indexOf(path.resolve(npmPrefix, 'lib/node_modules')) > 0,
-          );
+          assert(env.getNpmPaths().indexOf(path.resolve(npmPrefix, 'lib/node_modules')) > 0);
         }
       });
     });
@@ -622,66 +552,35 @@ describe('Environment Resolver', function () {
 
     describe('Find generator', () => {
       it('Scoped lookup', () => {
-        const modulePath = <string>(
-          Environment.lookupGenerator('@dummyscope/scoped:app')
-        );
-        expect(
-          modulePath.endsWith(
-            'node_modules/@dummyscope/gen-scoped/app/template.toml',
-          ),
-        ).toBeTruthy();
-        const packagePath = <string>Environment.lookupGenerator(
-          '@dummyscope/scoped:app',
-          {
-            packagePath: true,
-          },
-        );
-        expect(
-          packagePath.endsWith('node_modules/@dummyscope/gen-scoped'),
-        ).toBeTruthy();
+        const modulePath = <string>Environment.lookupGenerator('@dummyscope/scoped:app');
+        expect(modulePath.endsWith('node_modules/@dummyscope/gen-scoped/app/template.toml')).toBeTruthy();
+        const packagePath = <string>Environment.lookupGenerator('@dummyscope/scoped:app', {
+          packagePath: true,
+        });
+        expect(packagePath.endsWith('node_modules/@dummyscope/gen-scoped')).toBeTruthy();
       });
       it('Lookup', () => {
         const modulePath = <string>Environment.lookupGenerator('dummy:app');
         const modulePath2 = <string>Environment.lookupGenerator('dummy:coge');
-        expect(
-          modulePath.endsWith('node_modules/gen-dummy/app/template.toml'),
-        ).toBeTruthy();
-        expect(
-          modulePath2.endsWith('node_modules/gen-dummy/coge/template.toml'),
-        ).toBeTruthy();
+        expect(modulePath.endsWith('node_modules/gen-dummy/app/template.toml')).toBeTruthy();
+        expect(modulePath2.endsWith('node_modules/gen-dummy/coge/template.toml')).toBeTruthy();
 
-        const packagePath = <string>(
-          Environment.lookupGenerator('dummy:app', {packagePath: true})
-        );
-        const packagePath2 = <string>(
-          Environment.lookupGenerator('dummy:coge', {packagePath: true})
-        );
-        const packagePath3 = <string>(
-          Environment.lookupGenerator('dummy', {packagePath: true})
-        );
+        const packagePath = <string>Environment.lookupGenerator('dummy:app', {packagePath: true});
+        const packagePath2 = <string>Environment.lookupGenerator('dummy:coge', {packagePath: true});
+        const packagePath3 = <string>Environment.lookupGenerator('dummy', {packagePath: true});
         expect(packagePath.endsWith('node_modules/gen-dummy')).toBeTruthy();
         expect(packagePath2.endsWith('node_modules/gen-dummy')).toBeTruthy();
         expect(packagePath3.endsWith('node_modules/gen-dummy')).toBeTruthy();
       });
       it('Module Lookup', () => {
         const modulePath = <string>Environment.lookupGenerator('module:app');
-        expect(
-          modulePath.endsWith(
-            'node_modules/gen-module/generators/app/template.toml',
-          ),
-        ).toBeTruthy();
+        expect(modulePath.endsWith('node_modules/gen-module/generators/app/template.toml')).toBeTruthy();
 
-        const packagePath = <string>(
-          Environment.lookupGenerator('module:app', {packagePath: true})
-        );
+        const packagePath = <string>Environment.lookupGenerator('module:app', {packagePath: true});
         expect(packagePath.endsWith('node_modules/gen-module')).toBeTruthy();
 
-        const generatorPath = <string>(
-          Environment.lookupGenerator('module:app', {generatorPath: true})
-        );
-        expect(
-          generatorPath.endsWith('node_modules/gen-module/generators/'),
-        ).toBeTruthy();
+        const generatorPath = <string>Environment.lookupGenerator('module:app', {generatorPath: true});
+        expect(generatorPath.endsWith('node_modules/gen-module/generators/')).toBeTruthy();
       });
     });
   });
@@ -689,15 +588,9 @@ describe('Environment Resolver', function () {
   describe('#lookupGenerator() with multiple option', () => {
     const projectRoot = path.join(__dirname, 'fixtures/lookup-project/');
     const moduleGenerator = path.join(projectRoot, 'node_modules/gen-module');
-    const chdirRoot = path.join(
-      __dirname,
-      'fixtures/lookup-project/node_modules/foo',
-    );
+    const chdirRoot = path.join(__dirname, 'fixtures/lookup-project/node_modules/foo');
     const chdirRootNodeModule = path.join(chdirRoot, 'node_modules');
-    const multipleModuleGenerator = path.join(
-      chdirRoot,
-      'node_modules/gen-module',
-    );
+    const multipleModuleGenerator = path.join(chdirRoot, 'node_modules/gen-module');
 
     const links: string[] = [];
 
@@ -705,16 +598,12 @@ describe('Environment Resolver', function () {
       if (!fs.existsSync(chdirRoot)) {
         fs.mkdirSync(chdirRoot);
       }
-      links.push(
-        fslinkDir(path.resolve('fixtures/gen-module'), moduleGenerator),
-      );
+      links.push(fslinkDir(path.resolve('fixtures/gen-module'), moduleGenerator));
 
       if (!fs.existsSync(chdirRootNodeModule)) {
         fs.mkdirSync(chdirRootNodeModule);
       }
-      links.push(
-        fslinkDir(path.resolve('fixtures/gen-module'), multipleModuleGenerator),
-      );
+      links.push(fslinkDir(path.resolve('fixtures/gen-module'), multipleModuleGenerator));
 
       process.chdir(chdirRoot);
     });
@@ -730,19 +619,13 @@ describe('Environment Resolver', function () {
     describe('Find generator', () => {
       it('Module Lookup', () => {
         const modulePath = <string>Environment.lookupGenerator('module:app');
-        expect(
-          modulePath.endsWith(
-            'node_modules/gen-module/generators/app/template.toml',
-          ),
-        ).toBeTruthy();
+        expect(modulePath.endsWith('node_modules/gen-module/generators/app/template.toml')).toBeTruthy();
 
         const multiplePath = Environment.lookupGenerator('module:app', {
           multiple: true,
         });
         expect(
-          multiplePath[0].endsWith(
-            'lookup-project/node_modules/gen-module/generators/app/template.toml',
-          ),
+          multiplePath[0].endsWith('lookup-project/node_modules/gen-module/generators/app/template.toml'),
         ).toBeTruthy();
         expect(
           multiplePath[1].endsWith(
@@ -754,9 +637,7 @@ describe('Environment Resolver', function () {
           singleResult: false,
         });
         expect(
-          multiplePath2[0].endsWith(
-            'lookup-project/node_modules/gen-module/generators/app/template.toml',
-          ),
+          multiplePath2[0].endsWith('lookup-project/node_modules/gen-module/generators/app/template.toml'),
         ).toBeTruthy();
         expect(
           multiplePath2[1].endsWith(
@@ -784,9 +665,7 @@ describe('Environment Resolver', function () {
     });
 
     afterAll(function () {
-      fs.unlinkSync(
-        path.join(projectRoot, 'node_modules/gen-environment-extend'),
-      );
+      fs.unlinkSync(path.join(projectRoot, 'node_modules/gen-environment-extend'));
       process.chdir(__dirname);
     });
 

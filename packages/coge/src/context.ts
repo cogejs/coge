@@ -1,12 +1,7 @@
 import * as path from 'path';
 import * as execa from 'execa';
 import toArray from 'tily/array/toArray';
-import {
-  Environment,
-  EnvironmentOptions,
-  LookupOptions,
-  PromptModule,
-} from '@coge/environment';
+import {Environment, EnvironmentOptions, LookupOptions, PromptModule} from '@coge/environment';
 import {Context, Prompter} from './types';
 import {FileResolver} from './resolvers/file';
 import {FileLoader} from './loders';
@@ -30,10 +25,7 @@ export class DefaultContext implements Context {
   env: Environment;
   debug?: boolean;
 
-  protected constructor(
-    env?: Environment | DefaultContextOptions,
-    opts?: DefaultContextOptions,
-  ) {
+  protected constructor(env?: Environment | DefaultContextOptions, opts?: DefaultContextOptions) {
     if (!(env instanceof Environment)) {
       opts = env;
       env = undefined;

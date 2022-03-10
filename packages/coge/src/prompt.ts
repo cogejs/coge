@@ -9,16 +9,11 @@ export async function prompt<T>(
   context = context ?? {};
 
   const questions =
-    template._info.specs.params ||
-    (template.questions && (await template.questions({prompter, context})));
+    template._info.specs.params || (template.questions && (await template.questions({prompter, context})));
 
   if (Array.isArray(questions)) {
     // prompt _only_ for things we've not seen on the CLI
-    return prompter.prompt(
-      questions.filter(
-        p => context![p.name] == null || context![p.name].length === 0,
-      ),
-    );
+    return prompter.prompt(questions.filter(p => context![p.name] == null || context![p.name].length === 0));
   }
 
   if (template.prompt) {

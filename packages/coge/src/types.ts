@@ -2,12 +2,7 @@ import {Environment, PromptModule} from '@coge/environment';
 import {GenerateOptions} from './generate';
 
 type CliCmdValidatorFn = (str: string) => any;
-type CliCmdValidatorArg =
-  | string[]
-  | string
-  | RegExp
-  | CliCmdValidatorFn
-  | Number;
+type CliCmdValidatorArg = string[] | string | RegExp | CliCmdValidatorFn | Number;
 type CliCmdOptionType = 'int' | 'float' | 'bool' | 'list' | 'repeatable';
 type CliCompleteFn = () => Promise<string[]>;
 
@@ -93,8 +88,4 @@ export interface OpResult extends Record<string, any> {
   timing: number;
 }
 
-export type Op = (
-  session: OpSession,
-  action: RenderedAction,
-  opts: GenerateOptions,
-) => Promise<OpResult>;
+export type Op = (session: OpSession, action: RenderedAction, opts: GenerateOptions) => Promise<OpResult>;

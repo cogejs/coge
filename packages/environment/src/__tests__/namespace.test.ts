@@ -169,9 +169,7 @@ describe('Namespace', () => {
     });
 
     it('throws exception with namespace with scope, generator, id and invalid flags', () => {
-      expect(() =>
-        namespace.requireNamespace('@scope/foo-bar:app+1!$'),
-      ).toThrow();
+      expect(() => namespace.requireNamespace('@scope/foo-bar:app+1!$')).toThrow();
     });
 
     it('returns namespace with scope, multiples generator and id', () => {
@@ -249,9 +247,7 @@ describe('Namespace', () => {
     });
 
     it('bumps id with another id', () => {
-      const parsed = namespace.requireNamespace(
-        '@scope/foo-bar:app:client+angular?',
-      );
+      const parsed = namespace.requireNamespace('@scope/foo-bar:app:client+angular?');
       assert(
         equalsNamespace(parsed, {
           complete: '@scope/foo-bar:app:client+angular?',

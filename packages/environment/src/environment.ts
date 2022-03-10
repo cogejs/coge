@@ -80,10 +80,7 @@ export class Environment extends Resolver {
    *
    * @return {Environment} a new Environment instance
    */
-  static createEnv(
-    opts?: EnvironmentOptions,
-    adapter?: TerminalAdapter,
-  ): Environment {
+  static createEnv(opts?: EnvironmentOptions, adapter?: TerminalAdapter): Environment {
     return new Environment(opts, adapter);
   }
 
@@ -124,29 +121,21 @@ export class Environment extends Resolver {
       };
     }
 
-    opts.filePatterns =
-      opts.filePatterns ||
-      Environment.lookups.map(prefix => path.join(prefix, '*/template.toml'));
+    opts.filePatterns = opts.filePatterns || Environment.lookups.map(prefix => path.join(prefix, '*/template.toml'));
 
     const name = Environment.namespaceToName(namespace);
     opts.packagePatterns = opts.packagePatterns || getGeneratorHint(name);
 
-    opts.npmPaths =
-      opts.npmPaths || this.packageLookup.getNpmPaths(opts.localOnly).reverse();
+    opts.npmPaths = opts.npmPaths || this.packageLookup.getNpmPaths(opts.localOnly).reverse();
     if (!Array.isArray(opts.npmPaths)) opts.npmPaths = [opts.npmPaths];
     opts.packagePatterns = opts.packagePatterns || 'gen-*';
-    opts.packagePaths =
-      opts.packagePaths ||
-      this.packageLookup.findPackagesIn(opts.npmPaths, opts);
+    opts.packagePaths = opts.packagePaths || this.packageLookup.findPackagesIn(opts.npmPaths, opts);
 
     const paths: string[] = [];
     this.packageLookup.sync(opts, module => {
       const filename = module.filePath;
       const fileNS = this.namespace(filename, Environment.lookups);
-      if (
-        namespace === fileNS ||
-        (opts.packagePath && namespace === Environment.namespaceToName(fileNS))
-      ) {
+      if (namespace === fileNS || (opts.packagePath && namespace === Environment.namespaceToName(fileNS))) {
         // Version 2.6.0 returned pattern instead of modulePath for opts.packagePath
         const returnPath = opts.packagePath
           ? module.packagePath
@@ -191,12 +180,7 @@ export class Environment extends Resolver {
     lookups = toArray(lookups ?? []);
 
     // Cleanup extension and normalize path for different OS
-    let ns = path.normalize(
-      filepath.replace(
-        new RegExp(escapeRegExp(path.extname(filepath)) + '$'),
-        '',
-      ),
-    );
+    let ns = path.normalize(filepath.replace(new RegExp(escapeRegExp(path.extname(filepath)) + '$'), ''));
 
     // Sort lookups by length so biggest are removed first
     const nsLookups = sortBy(s => s.length, lookups.concat(['..']))
@@ -207,10 +191,7 @@ export class Environment extends Resolver {
     // eslint-disable-next-line @typescript-eslint/no-shadow
     ns = nsLookups.reduce((ns, lookup) => {
       // Only match full directory (begin with leading slash or start of input, end with trailing slash)
-      const reg = new RegExp(
-        `(?:\\\\|/|^)${escapeRegExp(lookup)}(?=[\\\\|/])`,
-        'g',
-      );
+      const reg = new RegExp(`(?:\\\\|/|^)${escapeRegExp(lookup)}(?=[\\\\|/])`, 'g');
       return ns.replace(reg, '');
     }, ns);
 
@@ -264,8 +245,7 @@ export class Environment extends Resolver {
 
     this.options = opts ?? {};
     const {prompt, console, stdin, stderr} = this.options;
-    this.adapter =
-      adapter ?? new TerminalAdapter({prompt, console, stdin, stderr});
+    this.adapter = adapter ?? new TerminalAdapter({prompt, console, stdin, stderr});
     this.cwd = this.options.cwd ?? process.cwd();
     this.store = new Store();
 
@@ -305,13 +285,7 @@ export class Environment extends Resolver {
       this.store.addPackage(packageNS, packagePath);
     }
 
-    debug(
-      'Registered %s (%s) on package %s (%s)',
-      namespace,
-      modulePath,
-      packageNS,
-      packagePath,
-    );
+    debug('Registered %s (%s) on package %s (%s)', namespace, modulePath, packageNS, packagePath);
     return this;
   }
 
@@ -337,9 +311,7 @@ export class Environment extends Resolver {
    * @return {Array}
    */
   getGeneratorNames() {
-    return uniq(
-      Object.keys(this.getGenerators()).map(Environment.namespaceToName),
-    );
+    return uniq(Object.keys(this.getGenerators()).map(Environment.namespaceToName));
   }
 
   /**
@@ -385,9 +357,7 @@ export class Environment extends Resolver {
   getPackagePaths(namespace: string) {
     return (
       this.store.getPackagesPaths()[namespace] ||
-      this.store.getPackagesPaths()[
-        Environment.namespaceToName(this.alias(namespace))
-      ]
+      this.store.getPackagesPaths()[Environment.namespaceToName(this.alias(namespace))]
     );
   }
 

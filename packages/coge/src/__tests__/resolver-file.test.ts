@@ -6,18 +6,13 @@ describe('resolver/file', () => {
   describe(`file lookup with separator '${sep}'`, () => {
     if (process.platform !== 'win32') {
       it('sanitizes bad "from" path', () => {
-        const p = lookup('.myconfig', 'foo').find((f: string) =>
-          f.match(/foo\/\.myconfig/),
-        );
+        const p = lookup('.myconfig', 'foo').find((f: string) => f.match(/foo\/\.myconfig/));
         expect(p).toBeDefined();
       });
 
       it('looks up configuration upwards', () => {
         expect(lookup('.myconfig', '/')).toEqual(['/.myconfig']);
-        expect(lookup('.myconfig', '/one')).toEqual([
-          '/one/.myconfig',
-          '/.myconfig',
-        ]);
+        expect(lookup('.myconfig', '/one')).toEqual(['/one/.myconfig', '/.myconfig']);
         expect(lookup('.myconfig', '/one/one/one')).toEqual([
           '/one/one/one/.myconfig',
           '/one/one/.myconfig',
@@ -40,9 +35,7 @@ describe('resolver/file', () => {
         'C:\\foo\\.myconfig',
         'C:\\.myconfig',
       ]);
-      expect(lookup('.myconfig', 'C:\\', path.win32)).toEqual([
-        'C:\\.myconfig',
-      ]);
+      expect(lookup('.myconfig', 'C:\\', path.win32)).toEqual(['C:\\.myconfig']);
     });
   });
 

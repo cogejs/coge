@@ -9,11 +9,7 @@ import {GenerateOptions} from '../generate';
 import {OpResult, OpSession, Prompter, RenderedAction} from '../types';
 import {createResult} from '../utils';
 
-export async function gen(
-  session: OpSession,
-  action: RenderedAction,
-  opts: GenerateOptions,
-): Promise<OpResult> {
+export async function gen(session: OpSession, action: RenderedAction, opts: GenerateOptions): Promise<OpResult> {
   const {
     context: {cwd, env},
   } = session;
@@ -30,9 +26,7 @@ export async function gen(
   const absTo = path.resolve(cwd, to);
   const shouldNotOverwrite = isTrue(unless_exists);
   const exists = await fs.pathExists(absTo);
-  const content = exists
-    ? (await fs.readFile(absTo)).toString('utf8')
-    : undefined;
+  const content = exists ? (await fs.readFile(absTo)).toString('utf8') : undefined;
   const identical = exists && content === action.body;
 
   if (isTrue(skip_if)) {
@@ -45,13 +39,7 @@ export async function gen(
       let overwrite = shouldNotOverwrite ? 'no' : '';
       if (!overwrite) {
         logger.conflict(to);
-        overwrite = await resolveConflict(
-          env,
-          prompter,
-          to,
-          exists,
-          action.body,
-        );
+        overwrite = await resolveConflict(env, prompter, to, exists, action.body);
         session.overwrite = overwrite === 'all';
       }
 
@@ -80,17 +68,8 @@ export async function gen(
   return result('generated');
 }
 
-async function resolveConflict(
-  env: Environment,
-  prompter: any,
-  to: any,
-  oldBody: any,
-  newBody: any,
-): Promise<any> {
-  const overwrite = await overwritePrompt(
-    prompter,
-    chalk.red(`Conflict on ${to}.`),
-  );
+async function resolveConflict(env: Environment, prompter: any, to: any, oldBody: any, newBody: any): Promise<any> {
+  const overwrite = await overwritePrompt(prompter, chalk.red(`Conflict on ${to}.`));
   if (overwrite !== 'diff') {
     return overwrite;
   }

@@ -22,11 +22,7 @@ export type ColorOptions = keyof ColorsByOptions;
 export interface Adapter {
   prompt<T>(questions: object | object[], cb?: PromptCallback<T>): Promise<T>;
 
-  prompt<T>(
-    questions: object | object[],
-    answers: T,
-    cb?: PromptCallback<T>,
-  ): Promise<T>;
+  prompt<T>(questions: object | object[], answers: T, cb?: PromptCallback<T>): Promise<T>;
 
   diff(actual: string, expected: string): string;
 }
@@ -62,9 +58,7 @@ export class TerminalAdapter implements Adapter {
     const stdout = options.stdout ?? process.stdout;
     const stderr = options.stderr ?? options.stdout ?? process.stderr;
 
-    this.promptModule =
-      options.prompt ??
-      inquirer.createPromptModule({input: options.stdin, output: stdout});
+    this.promptModule = options.prompt ?? inquirer.createPromptModule({input: options.stdin, output: stdout});
     this.console = options.console ?? new Console(stdout, stderr);
     this.logger = new Logger({console: this.console, stdout: options.stdout});
   }
@@ -124,14 +118,7 @@ export class TerminalAdapter implements Adapter {
       .join('');
 
     // Legend
-    msg =
-      '\n' +
-      this.colorDiff.removed('removed') +
-      ' ' +
-      this.colorDiff.added('added') +
-      '\n\n' +
-      msg +
-      '\n';
+    msg = '\n' + this.colorDiff.removed('removed') + ' ' + this.colorDiff.added('added') + '\n\n' + msg + '\n';
 
     console.log(msg);
     return msg;

@@ -56,10 +56,7 @@ export class PackageLookup {
    * @param {boolean} [options.reverse = false] - Set true reverse npmPaths/packagePaths order
    * @param {function}     [find]  Executed for each match, return true to stop lookup.
    */
-  sync(
-    options: Partial<PackageLookupOptions> | boolean = {},
-    find = (module: any) => module,
-  ): Package[] {
+  sync(options: Partial<PackageLookupOptions> | boolean = {}, find = (module: any) => module): Package[] {
     if (typeof options === 'boolean') {
       options = {localOnly: options};
     }
@@ -74,9 +71,7 @@ export class PackageLookup {
       }
     } else {
       opts.npmPaths = opts.npmPaths || this.getNpmPaths(opts);
-      opts.npmPaths = Array.isArray(opts.npmPaths)
-        ? opts.npmPaths
-        : [opts.npmPaths];
+      opts.npmPaths = Array.isArray(opts.npmPaths) ? opts.npmPaths : [opts.npmPaths];
       if (opts.reverse) {
         opts.npmPaths = opts.npmPaths.reverse();
       }
@@ -89,8 +84,7 @@ export class PackageLookup {
     for (const packagePath of opts.packagePaths) {
       if (
         !fs.existsSync(packagePath) ||
-        (!fs.lstatSync(packagePath).isDirectory() &&
-          !fs.lstatSync(packagePath).isSymbolicLink())
+        (!fs.lstatSync(packagePath).isDirectory() && !fs.lstatSync(packagePath).isSymbolicLink())
       ) {
         continue;
       }
@@ -123,16 +117,11 @@ export class PackageLookup {
    * @param {string|string[]} [options.packagePatterns='gen-*'] - Pattern pattern.
    * @return {Array} List of the generator modules path
    */
-  findPackagesIn(
-    searchPaths: string[],
-    options: {packagePatterns?: string | string[]} = {},
-  ) {
+  findPackagesIn(searchPaths: string[], options: {packagePatterns?: string | string[]} = {}) {
     const packagePatterns = options.packagePatterns ?? PACKAGE_NAME;
 
     // Remove undefined values and convert paths to absolute
-    searchPaths = searchPaths
-      .filter(npmPath => npmPath)
-      .map(npmPath => path.resolve(npmPath));
+    searchPaths = searchPaths.filter(npmPath => npmPath).map(npmPath => path.resolve(npmPath));
 
     let modules: string[] = [];
     for (const root of searchPaths) {
@@ -260,18 +249,14 @@ export class PackageLookup {
     const filterValidNpmPath = function (p: string, ignore = false) {
       return ignore
         ? p
-        : ['/node_modules', '/.node_modules', '/.node_libraries', '/node'].find(
-            dir => p.endsWith(dir),
-          )
+        : ['/node_modules', '/.node_modules', '/.node_libraries', '/node'].find(dir => p.endsWith(dir))
         ? p
         : '';
     };
 
     // Default paths for each system
     if (nvm) {
-      paths.push(
-        path.join(process.env.NVM_HOME!, process.version, 'node_modules'),
-      );
+      paths.push(path.join(process.env.NVM_HOME!, process.version, 'node_modules'));
     } else if (win32) {
       paths.push(path.join(process.env.APPDATA!, 'npm/node_modules'));
     } else {
@@ -289,17 +274,12 @@ export class PackageLookup {
     // because of bugs in the parseable implementation of `ls` command and mostly
     // performance issues. So, we go with our best bet for now.
     if (process.env.NODE_PATH) {
-      paths = filter(
-        x => !!identity(x),
-        process.env.NODE_PATH.split(path.delimiter),
-      ).concat(paths);
+      paths = filter(x => !!identity(x), process.env.NODE_PATH.split(path.delimiter)).concat(paths);
     }
 
     // Global node_modules should be 4 or 2 directory up this one (most of the time)
     // Ex: /usr/another_global/node_modules/coge-denerator/node_modules/@coge/environment/lib (1 level dependency)
-    paths.push(
-      filterValidNpmPath(path.join(PROJECT_ROOT, '../../..'), !filterPaths),
-    );
+    paths.push(filterValidNpmPath(path.join(PROJECT_ROOT, '../../..'), !filterPaths));
     // Ex: /usr/another_global/node_modules/@coge/environment/lib (installed directly)
     paths.push(path.join(PROJECT_ROOT, '..'));
 
@@ -318,12 +298,7 @@ export class PackageLookup {
 
     // Adds support for generator resolving when @coge/generator has been linked
     if (process.argv[1]) {
-      paths.push(
-        filterValidNpmPath(
-          path.join(path.dirname(process.argv[1]), '../..'),
-          !filterPaths,
-        ),
-      );
+      paths.push(filterValidNpmPath(path.join(path.dirname(process.argv[1]), '../..'), !filterPaths));
     }
 
     return uniq(paths.filter(identity).reverse());
@@ -361,11 +336,7 @@ export abstract class Resolver {
 
   abstract namespace(filepath: string, lookups?: string[]): string;
 
-  abstract register(
-    name: string,
-    namespace: string,
-    packagePath?: string,
-  ): this;
+  abstract register(name: string, namespace: string, packagePath?: string): this;
 
   /**
    * Search for generators and their sub generators.
@@ -404,18 +375,13 @@ export abstract class Resolver {
     // generators should be after, last will override registered one.
     opts.filePatterns =
       opts.filePatterns ||
-      lookups.reduce(
-        (acc, prefix) => acc.concat([path.join(prefix, '*/template.toml')]),
-        <string[]>[],
-      );
+      lookups.reduce((acc, prefix) => acc.concat([path.join(prefix, '*/template.toml')]), <string[]>[]);
 
     // Backward compatibility
-    opts.filterPaths =
-      opts.filterPaths === undefined ? false : opts.filterPaths;
+    opts.filterPaths = opts.filterPaths === undefined ? false : opts.filterPaths;
     opts.packagePatterns = opts.packagePatterns || 'gen-*';
     // We want to register high priorities packages after.
-    opts.reverse =
-      opts.reverse === undefined ? !opts.singleResult : opts.reverse;
+    opts.reverse = opts.reverse === undefined ? !opts.singleResult : opts.reverse;
 
     const generators: GeneratorItem[] = [];
     this.packageLookup.sync(opts, module => {
@@ -426,16 +392,9 @@ export abstract class Resolver {
         // Scoped package
         repositoryPath = path.join(repositoryPath, '..');
       }
-      const namespace = this.namespace(
-        path.relative(repositoryPath, generatorPath),
-        lookups,
-      );
+      const namespace = this.namespace(path.relative(repositoryPath, generatorPath), lookups);
 
-      const registered = this._tryRegistering(
-        generatorPath,
-        packagePath,
-        namespace,
-      );
+      const registered = this._tryRegistering(generatorPath, packagePath, namespace);
       generators.push({generatorPath, packagePath, namespace, registered});
       return opts.singleResult && registered;
     });
@@ -456,10 +415,7 @@ export abstract class Resolver {
    * @param {boolean} [options.packagePatterns='gen-*'] - Pattern pattern.
    * @return {Array} List of the generator modules path
    */
-  findGeneratorsIn(
-    searchPaths: string | string[],
-    options: {packagePatterns?: string} | string = {},
-  ) {
+  findGeneratorsIn(searchPaths: string | string[], options: {packagePatterns?: string} | string = {}) {
     if (typeof options === 'string') {
       options = {packagePatterns: options};
     }
@@ -480,11 +436,7 @@ export abstract class Resolver {
    * @param  {String} [namespace] - namespace of the generator.
    * @return {boolean} true if the generator have been registered.
    */
-  _tryRegistering(
-    generatorReference: string,
-    packagePath?: string,
-    namespace?: string,
-  ) {
+  _tryRegistering(generatorReference: string, packagePath?: string, namespace?: string) {
     const realPath = fs.realpathSync(generatorReference);
 
     try {
@@ -497,11 +449,7 @@ export abstract class Resolver {
       this.register(realPath, namespace!, packagePath);
       return true;
     } catch (error) {
-      console.error(
-        'Unable to register %s (Error: %s)',
-        generatorReference,
-        error.message,
-      );
+      console.error('Unable to register %s (Error: %s)', generatorReference, error.message);
       return false;
     }
   }
@@ -532,8 +480,7 @@ export abstract class Resolver {
     }
 
     // Backward compatibility
-    options.filterPaths =
-      options.filterPaths === undefined ? false : options.filterPaths;
+    options.filterPaths = options.filterPaths === undefined ? false : options.filterPaths;
 
     return this.packageLookup.getNpmPaths(options);
   }

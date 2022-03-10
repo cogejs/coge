@@ -14,13 +14,7 @@ export interface StringifyIndentOpts {
   end?: number; // line to
 }
 
-export function stringify(
-  target: any,
-  space?: number,
-  indent?: number,
-  begin?: number,
-  end?: number,
-) {
+export function stringify(target: any, space?: number, indent?: number, begin?: number, end?: number) {
   const lines = JSON.stringify(target, null, space);
   if (!indent) return lines;
   begin = begin ?? 0;
@@ -82,10 +76,7 @@ function isObject(obj: unknown) {
   return typeof obj === 'object' && obj !== null;
 }
 
-export function assign(
-  target: {[x: string]: any; cwd?: string},
-  ...sources: any[]
-) {
+export function assign(target: {[x: string]: any; cwd?: string}, ...sources: any[]) {
   for (const source of sources) {
     if (!sources) continue;
     for (const key of Object.keys(source)) {
