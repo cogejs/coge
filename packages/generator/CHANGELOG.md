@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.9](https://github.com/cogejs/coge/compare/@coge/generator@0.6.8...@coge/generator@0.6.9) (2022-03-10)
+
+**Note:** Version bump only for package @coge/generator
+
+
+
+
+
 ## [0.6.8](https://github.com/cogejs/coge/compare/@coge/generator@0.6.7...@coge/generator@0.6.8) (2022-02-27)
 
 **Note:** Version bump only for package @coge/generator
