@@ -73,9 +73,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
       }
 
       if (!msg.commands.length)
-        throw new Error(
-          'installDependencies needs at least one of `npm`, `bower` or `yarn` to run.',
-        );
+        throw new Error('installDependencies needs at least one of `npm`, `bower` or `yarn` to run.');
 
       if (!options.skipMessage) {
         const tplValues = assign(
@@ -127,10 +125,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
 
       // Return early if we're skipping installation
       if (this.opts.skipInstall || this.opts['skip-install']) {
-        this.log(
-          'Skipping install command: ' +
-            chalk.yellow(installer + ' ' + args.join(' ')),
-        );
+        this.log('Skipping install command: ' + chalk.yellow(installer + ' ' + args.join(' ')));
         return;
       }
 
@@ -138,16 +133,8 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
         await this.spawn(installer, args, spawnOptions);
         // this.log(installer + ' ' + args.join(' ') + ' ' + JSON.stringify(spawnOptions));
       } catch (e: any) {
-        if (
-          e.exitStatus &&
-          e.exitSignal &&
-          (this.opts.forceInstall || this.opts['force-install'])
-        ) {
-          throw new Error(
-            `Installation of ${installer} failed with code ${
-              e.exitStatus || e.exitSignal
-            }`,
-          );
+        if (e.exitStatus && e.exitSignal && (this.opts.forceInstall || this.opts['force-install'])) {
+          throw new Error(`Installation of ${installer} failed with code ${e.exitStatus || e.exitSignal}`);
         }
         this.log(
           chalk.red('Could not finish installation. \n') +
@@ -176,11 +163,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
      * @param {Object} [options] Options to pass to `dargs` as arguments
      * @param {Object} [spawnOptions] Options to pass `child_process.spawn`.
      */
-    async bowerInstall(
-      cmpnt: string | string[] | null,
-      options: any,
-      spawnOptions?: any,
-    ) {
+    async bowerInstall(cmpnt: string | string[] | null, options: any, spawnOptions?: any) {
       return this.scheduleInstall('bower', cmpnt, options, spawnOptions);
     }
 
@@ -193,11 +176,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
      * @param {Object} [options] Options to pass to `dargs` as arguments
      * @param {Object} [spawnOptions] Options to pass `child_process.spawn`.
      */
-    async npmInstall(
-      pkgs: string | string[] | null,
-      options: any,
-      spawnOptions?: any,
-    ) {
+    async npmInstall(pkgs: string | string[] | null, options: any, spawnOptions?: any) {
       return this.scheduleInstall('npm', pkgs, options, spawnOptions);
     }
 
@@ -210,11 +189,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
      * @param {Object} [options] Options to pass to `dargs` as arguments
      * @param {Object} [spawnOptions] Options to pass `child_process.spawn`.
      */
-    async yarnInstall(
-      pkgs: string | string[] | null,
-      options: any,
-      spawnOptions?: any,
-    ) {
+    async yarnInstall(pkgs: string | string[] | null, options: any, spawnOptions?: any) {
       await this.yarnUpgrade(spawnOptions);
       return this.scheduleInstall('yarn', pkgs, options, spawnOptions);
     }
@@ -230,11 +205,8 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
 
         await this.spawn('yarn', ['set', 'version', 'berry'], spawnOptions);
         await this.spawn('yarn', ['set', 'version', 'stable'], spawnOptions);
-        await this.spawn(
-          'yarn',
-          ['plugin', 'import', 'interactive-tools'],
-          spawnOptions,
-        );
+        await this.spawn('yarn', ['plugin', 'import', 'interactive-tools'], spawnOptions);
+        await this.spawn('yarn', ['plugin', 'import', 'workspace-tools'], spawnOptions);
         await this.spawn('git', ['add', '.yarn'], spawnOptions);
 
         if (fse.existsSync(rcfile)) {
