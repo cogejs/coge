@@ -419,7 +419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coge/environment@^0.10.5, @coge/environment@workspace:packages/environment":
+"@coge/environment@^0.10.6, @coge/environment@workspace:packages/environment":
   version: 0.0.0-use.local
   resolution: "@coge/environment@workspace:packages/environment"
   dependencies:
@@ -451,7 +451,7 @@ __metadata:
     sinon: ^13.0.1
     strip-ansi: ^6
     text-table: ^0.2.0
-    tily: ^2.15.0
+    tily: ^2.15.1
     ts-jest: ^27.1.3
     ts-node: ^10.7.0
     typescript: ^4.6.2
@@ -459,7 +459,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@coge/generator@^0.6.9, @coge/generator@workspace:packages/generator":
+"@coge/generator@^0.6.10, @coge/generator@workspace:packages/generator":
   version: 0.0.0-use.local
   resolution: "@coge/generator@workspace:packages/generator"
   dependencies:
@@ -491,7 +491,7 @@ __metadata:
     rimraf: ^3.0.2
     shelljs: ^0.8.5
     sinon: ^13.0.1
-    tily: ^2.15.0
+    tily: ^2.15.1
     ts-jest: ^27.1.3
     typescript: ^4.6.2
   languageName: unknown
@@ -4322,8 +4322,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coge@workspace:packages/coge"
   dependencies:
-    "@coge/environment": ^0.10.5
-    "@coge/generator": ^0.6.9
+    "@coge/environment": ^0.10.6
+    "@coge/generator": ^0.6.10
     "@iarna/toml": ^2.2.5
     "@nutol/build": ^0.2.6
     "@types/ejs": ^3.1.0
@@ -4361,7 +4361,7 @@ __metadata:
     prettier: ^2.5.1
     repeat-string: ^1.6.1
     rimraf: ^3.0.2
-    tily: ^2.15.0
+    tily: ^2.15.1
     time-require: ^0.1.2
     ts-jest: ^27.1.3
     ts-node: ^10.7.0
@@ -13515,12 +13515,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tily@npm:^2.15.0":
-  version: 2.15.0
-  resolution: "tily@npm:2.15.0"
+"tily@npm:^2.15.1":
+  version: 2.15.1
+  resolution: "tily@npm:2.15.1"
   peerDependencies:
     react-is: "*"
-  checksum: c9c0d354216bcb5b55a4efb87321697c9ba0fa1bfb7d524cc01eb5df74ac2db92693dcd76b30c50664bec55707af612111c6efc87fb83a4b75350e65bb6df081
+  checksum: 2417ed95b6838b185af7410d096b20aeaeb1be5c80e954d387fbf2a32105c47327174bcf35349a5e62111de87c47c19e1079cefb06a195e9b75ced63977d8e6a
   languageName: node
   linkType: hard
 

@@ -39,7 +39,7 @@
     "github-username": "^6",
     "js-yaml": "^4.1.0",
     "shelljs": "^0.8.5",
-    "tily": "^2.15.0"
+    "tily": "^2.15.1"
   },
   "devDependencies": {
     "@loopback/testlab": "^4.1.1",
