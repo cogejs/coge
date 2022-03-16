@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/cogejs/coge/compare/@coge/environment@0.10.6...@coge/environment@0.10.7) (2022-03-16)
+
+
+### Bug Fixes
+
+* upgrade tily to fix escapeRegExp missing issue ([4150f97](https://github.com/cogejs/coge/commit/4150f971b7c602cd6c25794373701dd500bc7535))
+
+
+
+
+
 ## [0.10.6](https://github.com/cogejs/coge/compare/@coge/environment@0.10.5...@coge/environment@0.10.6) (2022-03-16)
 
 **Note:** Version bump only for package @coge/environment
