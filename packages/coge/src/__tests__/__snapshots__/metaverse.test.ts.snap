@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`metaverse coge-generators: add-unless-exists:new -D message=foo 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/add-unless-exists/foo/always.txt",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/add-unless-exists/foo/always.txt",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "skipped",
       "subject": "given/add-unless-exists/foo/always.txt",
       "timing": -1,
@@ -28,9 +28,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: cli-prefill-prompt-vars:falsy-values-are-ok foobar -D include_something=false 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/cli-prefill-prompt-vars/falsy.md",
       "timing": -1,
@@ -43,9 +43,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: cli-prefill-prompt-vars:name-is-special foobar 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/cli-prefill-prompt-vars/name-is-special.md",
       "timing": -1,
@@ -58,9 +58,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: cli-prefill-prompt-vars:new -D message-from-cli=hello-from-cli 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/cli-prefill-prompt-vars/new.md",
       "timing": -1,
@@ -73,9 +73,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: conditional-rendering:new -D notGiven 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/conditional/always.txt",
       "timing": -1,
@@ -88,9 +88,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: existing-params:new -D email=premade-email@foobar.com 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/existing-params/new.md",
       "timing": -1,
@@ -103,9 +103,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: existing-params:new-params-alias -D email=premade-email@foobar.com 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/existing-params/new-params-alias.md",
       "timing": -1,
@@ -118,15 +118,15 @@ Object {
 `;
 
 exports[`metaverse coge-generators: filter:app 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/filter-app/foo.txt",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/filter-app/LICENSE",
       "timing": -1,
@@ -139,9 +139,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: index-js-existing-params:new -D email=premade-email@foobar.com 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/index-js-existing-params/new.md",
       "timing": -1,
@@ -154,9 +154,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: index-js-existing-params:new-params-alias -D email=premade-email@foobar.com 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/index-js-existing-params/new-params-alias.md",
       "timing": -1,
@@ -169,9 +169,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: inflection:new --name person 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/my_app/people.md",
       "timing": -1,
@@ -184,9 +184,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: init:self 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/templates/sample/new/hello.ejs.t",
       "timing": -1,
@@ -199,33 +199,33 @@ Object {
 `;
 
 exports[`metaverse coge-generators: mailer:new 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/app/mailers/message.js",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/app/mailers/foo/html.ejs",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/app/mailers/foo/subject.ejs",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/app/mailers/foo/text.ejs",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "inject",
       "subject": "given/app/mailers/foo/html.ejs",
       "timing": -1,
@@ -238,9 +238,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: overwrite-no:base 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/overwrite-no/new.md",
       "timing": -1,
@@ -253,9 +253,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: overwrite-no:over 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "skipped",
       "subject": "given/overwrite-no/new.md",
       "timing": -1,
@@ -268,9 +268,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: overwrite-yes:base 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/overwrite-yes/new.md",
       "timing": -1,
@@ -283,9 +283,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: overwrite-yes:over 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/overwrite-yes/new.md",
       "timing": -1,
@@ -298,9 +298,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: positional-name:new acmecorp 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/positional-name/acmecorp/always.txt",
       "timing": -1,
@@ -313,9 +313,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: recursive-prompt:new 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/recursive-prompt/new.md",
       "timing": -1,
@@ -328,27 +328,27 @@ Object {
 `;
 
 exports[`metaverse coge-generators: shell:new --name foo 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "executed",
       "subject": "/__tests__/metaverse/coge-generators/given/shell/hello.piped",
       "timing": -1,
       "type": "shell",
     },
-    Object {
+    {
       "status": "executed",
       "subject": "/__tests__/metaverse/coge-generators/given/shell/foo.hello",
       "timing": -1,
       "type": "shell",
     },
-    Object {
+    {
       "status": "generated",
       "subject": "given/shell/hmm.txt",
       "timing": -1,
       "type": "add",
     },
-    Object {
+    {
       "status": "executed",
       "subject": "/__tests__/metaverse/coge-generators/given/shell/side-effect.hello",
       "timing": -1,
@@ -361,9 +361,9 @@ Object {
 `;
 
 exports[`metaverse coge-generators: worker:new --name foo 1`] = `
-Object {
-  "actions": Array [
-    Object {
+{
+  "actions": [
+    {
       "status": "generated",
       "subject": "given/app/workers/foo.js",
       "timing": -1,

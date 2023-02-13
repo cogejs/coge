@@ -2,7 +2,7 @@ import os from 'os';
 import path from 'path';
 import makeDir from 'make-dir';
 import nock from 'nock';
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 import shell from 'shelljs';
 import sinon from 'sinon';
 
@@ -25,9 +25,9 @@ describe('module#user', function () {
     shell.exec('git config --local user.email coge@cogejs.com');
   });
 
-  afterEach(function (done) {
+  afterEach(async () => {
     process.chdir(prevCwd);
-    rimraf(tmpdir, done);
+    await rimraf(tmpdir);
   });
 
   beforeEach(function () {

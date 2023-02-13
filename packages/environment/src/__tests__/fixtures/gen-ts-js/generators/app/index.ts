@@ -1,4 +1,4 @@
-module.exports = (args, options) => {
+module.exports = (args: any, options: any) => {
   console.log('Executing generator with', args, options);
 };
 

@@ -1,3 +1,3 @@
 module.exports = {
-  reject: ['chalk', 'is-scoped', 'globby', 'execa'],
+  reject: ['chalk', 'is-scoped', 'globby', 'execa', 'inquirer'],
 };
