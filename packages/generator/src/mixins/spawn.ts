@@ -3,6 +3,10 @@ import spawn from 'cross-spawn-promise';
 import {CrossSpawnOptions} from 'cross-spawn-promise';
 import {Constructor, Spawnable} from '../types';
 
+import debugFactory from 'debug';
+
+const debug = debugFactory('coge:generator:spawn');
+
 export function SpawnMixin<T extends Constructor<any>>(superClass: T) {
   return class extends superClass implements Spawnable {
     constructor(...args: any[]) {
@@ -19,6 +23,7 @@ export function SpawnMixin<T extends Constructor<any>>(superClass: T) {
      */
     async spawn(cmd: string, args?: any[], opt?: Partial<CrossSpawnOptions>): Promise<Uint8Array> {
       opt = opt ?? {};
+      debug('spawn command: %s %s', cmd, args?.join(' '));
       return spawn(cmd, args, merge(opt, {stdio: 'inherit'}));
     }
   };

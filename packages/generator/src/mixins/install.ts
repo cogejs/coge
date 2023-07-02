@@ -5,6 +5,10 @@ import fse from 'fs-extra';
 import {Constructor} from '../types';
 import {dump, load} from 'js-yaml';
 
+import debugFactory from 'debug';
+
+const debug = debugFactory('coge:generator:install');
+
 export interface InstallOptions {
   npm?: boolean | Record<string, any>;
   bower?: boolean | Record<string, any>;
@@ -107,6 +111,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
       options: Record<string, any>,
       spawnOptions?: Record<string, any>,
     ) {
+      debug('scheduleInstall', installer, paths, options, spawnOptions);
       options = options ?? {};
       spawnOptions = spawnOptions ?? {};
       paths = Array.isArray(paths) ? paths : paths?.split(' ') ?? [];
@@ -190,11 +195,12 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
      * @param {Object} [spawnOptions] Options to pass `child_process.spawn`.
      */
     async yarnInstall(pkgs: string | string[] | null, options: any, spawnOptions?: any) {
-      await this.yarnUpgrade(spawnOptions);
+      debug('yarnInstall', pkgs, options, spawnOptions);
+      await this.yarnSetup(spawnOptions);
       return this.scheduleInstall('yarn', pkgs, options, spawnOptions);
     }
 
-    async yarnUpgrade(spawnOptions?: any) {
+    async yarnSetup(spawnOptions?: any) {
       if (!fse.existsSync('.yarn')) {
         const rcfile = '.yarnrc.yml';
 
@@ -203,6 +209,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
           rc = load(fse.readFileSync(rcfile, 'utf8')) as Record<string, any>;
         }
 
+        debug('setup yarn for project');
         await this.spawn('yarn', ['set', 'version', 'stable'], spawnOptions);
         await this.spawn('yarn', ['plugin', 'import', 'interactive-tools'], spawnOptions);
         await this.spawn('yarn', ['plugin', 'import', 'workspace-tools'], spawnOptions);

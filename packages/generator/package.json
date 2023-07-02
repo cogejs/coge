@@ -35,6 +35,7 @@
     "cross-spawn": "^7.0.3",
     "cross-spawn-promise": "^0.10.2",
     "dargs": "^7",
+    "debug": "^4.3.4",
     "fs-extra": "^11.1.0",
     "github-username": "^6",
     "js-yaml": "^4.1.0",
