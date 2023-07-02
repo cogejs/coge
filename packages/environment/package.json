@@ -21,8 +21,6 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "prerelease": "cross-env CI=1 yarn run test",
-    "release": "np --no-2fa",
     "build": "nb-tsc -b",
     "build:full": "yarn install --ignore-scripts && yarn run clean && yarn run build",
     "precoverage": "yarn test",
@@ -31,7 +29,7 @@
     "prettier:check": "yarn run prettier:cli --check",
     "prettier:fix": "yarn run prettier:cli --write",
     "format": "yarn run prettier:fix",
-    "clean": "nb-clean dist coverage .nyc_output *.tsbuildinfo",
+    "clean": "del 'dist' 'coverage' '*.tsbuildinfo'",
     "pretest": "yarn run clean && yarn run format && yarn run build",
     "test": "nb-nyc jest",
     "test:ci": "nb-nyc jest"
@@ -64,9 +62,9 @@
     "@types/sinon": "^10.0.15",
     "@types/text-table": "^0.2.2",
     "cross-env": "^7.0.3",
+    "del-cli": "^5.0.0",
     "dir-compare": "^4.0.0",
     "jest": "^29.5.0",
-    "np": "^8.0.4",
     "rimraf": "^5.0.1",
     "sinon": "^15.2.0",
     "ts-jest": "^29.1.1",
