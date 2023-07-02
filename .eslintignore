@@ -6,3 +6,4 @@ coverage/
 .eslintrc.js
 __tests__/**/*.js
 fixtures
+*.js
