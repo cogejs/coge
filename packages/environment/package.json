@@ -1,6 +1,6 @@
 {
   "name": "@coge/environment",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "Handles lookups of generators in a specific environment",
   "license": "MIT",
   "repository": "https://github.com/cogejs/coge",
