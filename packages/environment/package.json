@@ -49,7 +49,7 @@
     "strip-ansi": "^6",
     "text-table": "^0.2.0",
     "tily": "^2.20.1",
-    "untildify": "^5.0.0"
+    "untildify": "^4.0.0"
   },
   "devDependencies": {
     "@nutol/build": "^0.2.14",
