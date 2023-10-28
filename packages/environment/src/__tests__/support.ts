@@ -1,7 +1,8 @@
-import path from 'path';
-import fs from 'fs-extra';
-import toArray from 'tily/array/toArray';
 import {sync as execaSync} from 'execa';
+import fs from 'fs-extra';
+import path from 'path';
+import toArray from 'tily/array/toArray';
+
 import {Meta} from '../types';
 
 export function assertGenerator(real: Meta, resolved: string) {

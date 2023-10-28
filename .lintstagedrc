@@ -1,9 +1,0 @@
-{
-  "*.{ts,js}": [
-    "nb-prettier --write",
-    "nb-eslint --fix --report-unused-disable-directives --cache"
-  ],
-  "*.{md}": [
-    "nb-prettier --write"
-  ]
-}

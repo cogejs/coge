@@ -65,7 +65,6 @@ describe('injector', () => {
       injector(
         {
           attributes: {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             at_line: 2,
           },
           body: "    gem 'kamikaze' # added by coge",
@@ -79,7 +78,6 @@ describe('injector', () => {
       injector(
         {
           attributes: {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             skip_if: 'source',
             after: "gem 'rails'",
           },
@@ -95,7 +93,7 @@ describe('injector', () => {
         {
           attributes: {
             after: "gem 'rails'",
-            // eslint-disable-next-line @typescript-eslint/naming-convention
+
             eof_last: false,
           },
           body: "    gem 'kamikaze' # added by coge\n",
@@ -110,7 +108,7 @@ describe('injector', () => {
         {
           attributes: {
             after: "gem 'rails'",
-            // eslint-disable-next-line @typescript-eslint/naming-convention
+
             eof_last: true,
           },
           body: "    gem 'kamikaze' # added by coge",
@@ -125,7 +123,7 @@ describe('injector', () => {
         {
           attributes: {
             after: "rails[a-z\\:\\/\\.'\\s]*giri",
-            // eslint-disable-next-line @typescript-eslint/naming-convention
+
             eof_last: false,
           },
           body: "    gem 'kamikaze' # added by coge",
@@ -140,7 +138,7 @@ describe('injector', () => {
         {
           attributes: {
             before: "rails[a-z\\:\\/\\.'\\s]*giri",
-            // eslint-disable-next-line @typescript-eslint/naming-convention
+
             eof_last: false,
           },
           body: "    gem 'kamikaze' # added by coge",
@@ -154,7 +152,6 @@ describe('injector', () => {
       injector(
         {
           attributes: {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             skip_if: "rails[a-z\\:\\/\\.'\\s]*giri",
             after: "gem 'rails'",
           },

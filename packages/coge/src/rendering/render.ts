@@ -1,12 +1,12 @@
-import * as fs from 'fs-extra';
 import * as ejs from 'ejs';
-import * as path from 'path';
+import * as fs from 'fs-extra';
 import * as walk from 'ignore-walk';
+import * as path from 'path';
 import last from 'tily/array/last';
 
+import {Template} from '../template';
 import {Context, RenderedAction} from '../types';
 import {buildContext} from './context';
-import {Template} from '../template';
 
 const fm = require('front-matter');
 

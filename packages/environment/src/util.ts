@@ -1,4 +1,4 @@
-import {SyncOptions, sync as execaSync} from 'execa';
+import {sync as execaSync, SyncOptions} from 'execa';
 import replace from 'tily/string/replace';
 
 /**

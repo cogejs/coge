@@ -1,4 +1,5 @@
 import {Environment} from '@coge/environment';
+
 import {NoGenerators} from './instructions';
 
 export function printAvailableGenerators(env: Environment) {

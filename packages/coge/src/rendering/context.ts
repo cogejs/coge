@@ -1,5 +1,5 @@
-import * as inflection from 'inflection';
 import * as changeCase from 'change-case';
+import * as inflection from 'inflection';
 
 import {Context} from '../types';
 import {stringify, undasherize} from '../utils';

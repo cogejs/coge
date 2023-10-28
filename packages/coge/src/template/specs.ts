@@ -1,5 +1,5 @@
-import * as fs from 'fs-extra';
 import * as toml from '@iarna/toml';
+import * as fs from 'fs-extra';
 
 export interface TemplateSpecs {
   params?: {

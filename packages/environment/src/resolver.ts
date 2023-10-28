@@ -1,13 +1,11 @@
-import * as path from 'path';
+import debugFactory from 'debug';
 import * as fs from 'fs-extra';
 import {sync as globbySync} from 'globby';
-
-import {uniq} from 'tily/array/uniq';
+import * as path from 'path';
 import {filter} from 'tily/array/filter';
-import {identity} from 'tily/function/identity';
-
 import toArray from 'tily/array/toArray';
-import debugFactory from 'debug';
+import {uniq} from 'tily/array/uniq';
+import {identity} from 'tily/function/identity';
 
 import {resolveNpmRoot, resolveYarnBase} from './paths';
 

@@ -1,10 +1,11 @@
+import assert from 'assert';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import assert from 'assert';
+
 import {Environment} from '../environment';
+import {LookupOptions} from '../resolver';
 import {execaOutput} from '../util';
 import {assertGenerator, exec, fslinkDir, fsunlink, npmLinkFixtures, npmUnlinkFixtures} from './support';
-import {LookupOptions} from '../resolver';
 
 const globalLookupTest = process.env.NODE_PATH ? it : xit;
 

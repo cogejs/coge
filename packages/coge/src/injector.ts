@@ -1,5 +1,6 @@
-import {RenderedAction} from './types';
 import identity from 'tily/function/identity';
+
+import {RenderedAction} from './types';
 
 const getPragmaticIndex = (pattern: string | RegExp, lines: any[], isBefore: boolean) => {
   const oneLineMatchIndex = lines.findIndex(l => l.match(pattern));
@@ -22,7 +23,6 @@ const getPragmaticIndex = (pattern: string | RegExp, lines: any[], isBefore: boo
   return oneLineMatchIndex + (isBefore ? 0 : 1);
 };
 const locations = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   at_line: identity,
   prepend: () => 0,
   append: (_: any, lines: string | any[]) => lines.length - 1,
@@ -41,7 +41,6 @@ const indexByLocation = (attributes: any, lines: string[]): number => {
 
 export const injector = (action: RenderedAction, content: string): string => {
   const {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     attributes: {skip_if, eof_last},
     attributes,
     body,

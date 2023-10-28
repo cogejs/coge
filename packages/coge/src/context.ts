@@ -1,10 +1,11 @@
-import * as path from 'path';
-import * as execa from 'execa';
-import toArray from 'tily/array/toArray';
 import {Environment, EnvironmentOptions, LookupOptions, PromptModule} from '@coge/environment';
-import {Context, Prompter} from './types';
-import {FileResolver} from './resolvers/file';
+import * as execa from 'execa';
+import * as path from 'path';
+import toArray from 'tily/array/toArray';
+
 import {FileLoader} from './loders';
+import {FileResolver} from './resolvers/file';
+import {Context, Prompter} from './types';
 
 export interface DefaultContextOptions extends EnvironmentOptions {
   debug?: boolean;

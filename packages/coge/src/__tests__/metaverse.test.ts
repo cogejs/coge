@@ -1,9 +1,9 @@
+import * as dirCompare from 'dir-compare';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import * as dirCompare from 'dir-compare';
 
-import {RunnerSettings} from '../types';
 import {cli} from '../cli';
+import {RunnerSettings} from '../types';
 import {failPrompt, preparedPrompt} from './support';
 
 const opts = {compareContent: true};

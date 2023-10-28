@@ -1,5 +1,5 @@
-import {Prompter} from './types';
 import {Template} from './template';
+import {Prompter} from './types';
 
 export async function prompt<T>(
   prompter: Prompter<any, any>,

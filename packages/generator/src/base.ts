@@ -1,7 +1,8 @@
 import {Environment, Logger} from 'coge-environment';
+import isPlainObject from 'tily/is/plainObject';
+
 import * as fs from './utils/fs';
 import * as user from './utils/user';
-import isPlainObject from 'tily/is/plainObject';
 
 export interface BaseTemplateOptions extends Record<string, any> {
   env?: Environment | Record<string, any>;

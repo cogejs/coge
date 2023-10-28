@@ -1,11 +1,12 @@
-import * as path from 'path';
-import isScoped from 'is-scoped';
-import * as globby from 'globby';
-import {Templating} from '@coge/generator';
 import {Environment, Meta} from '@coge/environment';
-import {loadTemplateSpecs, TemplateSpecs} from './specs';
+import {Templating} from '@coge/generator';
+import * as globby from 'globby';
+import isScoped from 'is-scoped';
+import * as path from 'path';
+
 import {ErrorWithInstruction} from '../errors';
 import {AvailableTemplatesForGenerator, GeneratorNotFound} from '../instructions';
+import {loadTemplateSpecs, TemplateSpecs} from './specs';
 
 export interface TemplateInfo {
   dir: string;

@@ -1,5 +1,6 @@
 import camelCase from 'camelcase';
 import debugFactory from 'debug';
+
 const debug = debugFactory('coge:environment:namespace');
 
 // ============ | == @ ======== scope ========== | ====== unscoped ====== | = : ========== generator ========== | = @ ===== semver ====== @ | == + ========= instanceId =========== | = # ======= method ========= |= flags = |

@@ -1,9 +1,8 @@
-import merge from 'tily/object/merge';
-import spawn from 'cross-spawn-promise';
-import {CrossSpawnOptions} from 'cross-spawn-promise';
-import {Constructor, Spawnable} from '../types';
-
+import spawn, {CrossSpawnOptions} from 'cross-spawn-promise';
 import debugFactory from 'debug';
+import merge from 'tily/object/merge';
+
+import {Constructor, Spawnable} from '../types';
 
 const debug = debugFactory('coge:generator:spawn');
 

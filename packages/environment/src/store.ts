@@ -1,5 +1,5 @@
-import * as path from 'path';
 import debugFactory from 'debug';
+import * as path from 'path';
 
 import {Metas} from './types';
 

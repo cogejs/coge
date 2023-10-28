@@ -1,13 +1,13 @@
-import chalk from 'chalk';
 import {InstallOptions} from '@coge/generator';
-import {render} from './rendering';
-import {resolveOps} from './ops';
-import {ErrorWithInstruction} from './errors';
+import chalk from 'chalk';
 
-import {assign} from './utils';
-import {Context, OpResult, OpSession} from './types';
+import {ErrorWithInstruction} from './errors';
+import {resolveOps} from './ops';
 import {prompt} from './prompt';
+import {render} from './rendering';
 import {loadTemplate} from './template';
+import {Context, OpResult, OpSession} from './types';
+import {assign} from './utils';
 
 export interface GenerateOptions {
   global?: boolean;

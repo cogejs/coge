@@ -1,9 +1,10 @@
-import inquirer from 'inquirer';
 import chalk from 'chalk';
-import {ReadStream, WriteStream} from 'tty';
 import {Console} from 'console';
-import {Logger} from './logger';
 import * as diff from 'diff';
+import inquirer from 'inquirer';
+import {ReadStream, WriteStream} from 'tty';
+
+import {Logger} from './logger';
 
 export type Answers = Record<string, any>;
 export interface PromptModule {

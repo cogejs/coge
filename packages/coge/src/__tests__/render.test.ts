@@ -1,4 +1,5 @@
 import * as path from 'path';
+
 import {render} from '../rendering';
 import {MockContext} from './mocks/context';
 import {mockTemplate} from './mocks/template';

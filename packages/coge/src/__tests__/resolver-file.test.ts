@@ -1,5 +1,6 @@
 import * as path from 'path';
-import {lookup, FileResolver, reversePathsToWalk} from '../resolvers/file';
+
+import {FileResolver, lookup, reversePathsToWalk} from '../resolvers/file';
 
 const sep = path.sep;
 describe('resolver/file', () => {

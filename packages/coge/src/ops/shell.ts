@@ -1,7 +1,8 @@
 import isEmpty from 'tily/is/empty';
-import {OpResult, RenderedAction, OpSession} from '../types';
-import {createResult} from '../utils';
+
 import {GenerateOptions} from '../generate';
+import {OpResult, OpSession, RenderedAction} from '../types';
+import {createResult} from '../utils';
 
 export async function shell(
   {context: {cwd, env, exec}}: OpSession,

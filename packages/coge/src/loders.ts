@@ -1,5 +1,6 @@
-import {Loader} from './types';
 import * as fs from 'fs-extra';
+
+import {Loader} from './types';
 
 export const FileLoader: Loader = {
   exists: fs.pathExists,

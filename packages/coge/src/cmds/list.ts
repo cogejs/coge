@@ -1,5 +1,5 @@
-import {CliCmdDefinition, Context} from '../types';
 import {availableGenerators} from '../help';
+import {CliCmdDefinition, Context} from '../types';
 
 export const list: CliCmdDefinition = {
   name: 'list',

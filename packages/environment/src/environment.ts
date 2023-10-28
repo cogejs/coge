@@ -1,21 +1,19 @@
-import * as path from 'path';
-import * as fs from 'fs-extra';
-import untildify from 'untildify';
-import isScoped from 'is-scoped';
-
-import {findLast} from 'tily/array/findLast';
-import {uniq} from 'tily/array/uniq';
-import {sortBy} from 'tily/array/sortBy';
-import {last} from 'tily/array/last';
-
-import {PackageLookup, PackageLookupOptions, Resolver} from './resolver';
-import {PromptModule, TerminalAdapter} from './adapter';
-import {Store} from './store';
-import {ReadStream, WriteStream} from 'tty';
-import escapeRegExp from 'tily/string/escapeRegExp';
-import toArray from 'tily/array/toArray';
 import debugFactory from 'debug';
+import * as fs from 'fs-extra';
+import isScoped from 'is-scoped';
+import * as path from 'path';
+import {findLast} from 'tily/array/findLast';
+import {last} from 'tily/array/last';
+import {sortBy} from 'tily/array/sortBy';
+import toArray from 'tily/array/toArray';
+import {uniq} from 'tily/array/uniq';
+import escapeRegExp from 'tily/string/escapeRegExp';
+import {ReadStream, WriteStream} from 'tty';
+import untildify from 'untildify';
 
+import {PromptModule, TerminalAdapter} from './adapter';
+import {PackageLookup, PackageLookupOptions, Resolver} from './resolver';
+import {Store} from './store';
 import {Meta} from './types';
 
 const debug = debugFactory('coge:environment');

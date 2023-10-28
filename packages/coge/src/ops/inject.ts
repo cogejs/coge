@@ -1,10 +1,10 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import {OpResult, RenderedAction} from '../types';
-import {createResult} from '../utils';
-import {injector} from '../injector';
+
 import {GenerateOptions} from '../generate';
-import {OpSession} from '../types';
+import {injector} from '../injector';
+import {OpResult, OpSession, RenderedAction} from '../types';
+import {createResult} from '../utils';
 
 export async function inject(
   {context: {cwd, env}}: OpSession,

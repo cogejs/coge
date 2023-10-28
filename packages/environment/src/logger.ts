@@ -1,10 +1,9 @@
-import * as util from 'util';
-import table from 'text-table';
 import chalk from 'chalk';
 import logSymbols from 'log-symbols';
-
+import table from 'text-table';
 import {mergeDeep} from 'tily/object/mergeDeep';
 import {WriteStream} from 'tty';
+import * as util from 'util';
 
 // Padding step
 const padding = ' ';

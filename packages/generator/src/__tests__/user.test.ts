@@ -1,14 +1,15 @@
-import os from 'os';
-import path from 'path';
 import makeDir from 'make-dir';
 import nock from 'nock';
-import { rimraf } from 'rimraf';
+import os from 'os';
+import path from 'path';
+import {rimraf} from 'rimraf';
 import shell from 'shelljs';
 import sinon from 'sinon';
 
 import {Template} from '../template';
 
 const user = require('../utils/user');
+
 const tmpdir = path.join(os.tmpdir(), 'coge-user');
 
 describe('module#user', function () {

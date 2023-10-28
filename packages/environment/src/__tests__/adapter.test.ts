@@ -1,8 +1,9 @@
+import chalk from 'chalk';
 import inquirer from 'inquirer';
+import logSymbols from 'log-symbols';
 import sinon from 'sinon';
 import stripAnsi from 'strip-ansi';
-import logSymbols from 'log-symbols';
-import chalk from 'chalk';
+
 import {TerminalAdapter} from '../adapter';
 
 describe('TerminalAdapter', () => {

@@ -1,7 +1,8 @@
 import assert from 'assert';
+import * as fs from 'fs-extra';
 import * as os from 'os';
 import * as path from 'path';
-import * as fs from 'fs-extra';
+
 import {Environment} from '../environment';
 
 const tmpdir = path.join(os.tmpdir(), '@coge/environment/auto-install');

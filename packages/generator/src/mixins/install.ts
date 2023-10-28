@@ -1,11 +1,11 @@
-import assign from 'tily/assign';
-import dargs from 'dargs';
 import chalk from 'chalk';
-import fse from 'fs-extra';
-import {Constructor} from '../types';
-import {dump, load} from 'js-yaml';
-
+import dargs from 'dargs';
 import debugFactory from 'debug';
+import fse from 'fs-extra';
+import {dump, load} from 'js-yaml';
+import assign from 'tily/assign';
+
+import {Constructor} from '../types';
 
 const debug = debugFactory('coge:generator:install');
 

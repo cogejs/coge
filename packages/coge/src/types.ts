@@ -1,4 +1,5 @@
 import {Environment, PromptModule} from '@coge/environment';
+
 import {GenerateOptions} from './generate';
 
 type CliCmdValidatorFn = (str: string) => any;

@@ -1,4 +1,5 @@
 import * as importedPath from 'path';
+
 import {Loader} from '../types';
 
 // inline fp methods due to perf

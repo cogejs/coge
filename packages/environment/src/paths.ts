@@ -1,8 +1,9 @@
-import * as path from 'path';
 import * as fs from 'fs-extra';
-import untildify from 'untildify';
+import * as path from 'path';
 import toArray from 'tily/array/toArray';
 import identity from 'tily/function/identity';
+import untildify from 'untildify';
+
 import {execaOutput} from './util';
 
 const os = process.platform;
@@ -13,14 +14,12 @@ function resolve(paths: Record<string, (opts: any) => string | string[]>, opts: 
 
 // https://github.com/yarnpkg/yarn/issues/2049#issuecomment-263183768
 const YARN_BASES = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   win32: ({APPDATA}: any) => `${APPDATA}/Yarn/config/global`,
   darwin: () => '~/.config/yarn/global',
   linux: () => '/usr/local/share/.config/yarn/global',
 };
 
 const NPM_ROOTS = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   win32: ({APPDATA}: any) => [`${APPDATA}/npm/node_modules`, `${APPDATA}/roaming/npm/node_modules`],
   darwin: () => '/usr/local/lib/node_modules',
   linux: () => '/usr/local/lib/node_modules',

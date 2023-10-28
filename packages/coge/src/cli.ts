@@ -1,8 +1,8 @@
 import values from 'tily/object/values';
 
 import * as commands from './cmds';
-import {CliCmdActionCallback, CliCmdDefinition, RunnerSettings} from './types';
 import {DefaultContext} from './context';
+import {CliCmdActionCallback, CliCmdDefinition, RunnerSettings} from './types';
 
 const Program = require('caporal/lib/program');
 

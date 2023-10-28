@@ -1,5 +1,5 @@
-import {InstallMixin, InstallOptions} from './mixins/install';
 import {BaseTemplate, BaseTemplateOptions} from './base';
+import {InstallMixin, InstallOptions} from './mixins/install';
 import {SpawnMixin} from './mixins/spawn';
 
 export interface Prompter<Q, T> {

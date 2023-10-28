@@ -1,6 +1,6 @@
-import {CliCmdDefinition, Context} from '../types';
 import {generate} from '../generate';
 import {AttrsResolver} from '../resolvers/attrs';
+import {CliCmdDefinition, Context} from '../types';
 
 export const gen: CliCmdDefinition = {
   name: 'gen',

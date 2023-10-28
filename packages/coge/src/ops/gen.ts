@@ -1,11 +1,10 @@
-import * as path from 'path';
-import * as fs from 'fs-extra';
+import {Environment} from '@coge/environment';
 import chalk from 'chalk';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 import isTrue from 'tily/isTrue';
 
-import {Environment} from '@coge/environment';
 import {GenerateOptions} from '../generate';
-
 import {OpResult, OpSession, Prompter, RenderedAction} from '../types';
 import {createResult} from '../utils';
 
@@ -14,7 +13,6 @@ export async function gen(session: OpSession, action: RenderedAction, opts: Gene
     context: {cwd, env},
   } = session;
   const {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     attributes: {to, inject, unless_exists, skip_if},
   } = action;
   const {logger} = env.adapter!;

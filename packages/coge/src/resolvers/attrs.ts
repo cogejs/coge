@@ -1,4 +1,5 @@
 import * as json5 from 'json5';
+
 import {set, undasherize} from '../utils';
 
 export class AttrsResolver {
