@@ -52,7 +52,7 @@
     "untildify": "^4.0.0"
   },
   "devDependencies": {
-    "@nutol/build": "^0.2.14",
+    "@nutol/build": "^0.2.15",
     "@types/debug": "^4.1.10",
     "@types/diff": "^5.0.7",
     "@types/fs-extra": "^11.0.3",

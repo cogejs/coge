@@ -34,9 +34,9 @@
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@commitlint/travis-cli": "^18.2.0",
-    "@nutol/build": "^0.2.14",
-    "@nutol/eslint-config": "^0.2.9",
-    "@nutol/monorepo": "^0.2.11",
+    "@nutol/build": "^0.2.15",
+    "@nutol/eslint-config": "^0.2.10",
+    "@nutol/monorepo": "^0.2.12",
     "@types/jest": "^29.5.6",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
@@ -48,7 +48,7 @@
     "eslint-plugin-eslint-plugin": "^5.1.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jest": "^27.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "fs-extra": "^11.1.1",
     "husky": "^8.0.3",
@@ -77,5 +77,5 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@4.0.0"
 }
