@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/cogejs/coge/compare/coge@0.12.4...coge@0.12.5) (2023-10-28)
+
+**Note:** Version bump only for package coge
+
+
+
+
+
 ## [0.12.4](https://github.com/cogejs/coge/compare/coge@0.12.3...coge@0.12.4) (2023-10-28)
 
 **Note:** Version bump only for package coge
