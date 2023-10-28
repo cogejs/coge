@@ -211,8 +211,6 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
 
         debug('setup yarn for project');
         await this.spawn('yarn', ['set', 'version', 'stable'], spawnOptions);
-        await this.spawn('yarn', ['plugin', 'import', 'interactive-tools'], spawnOptions);
-        await this.spawn('yarn', ['plugin', 'import', 'workspace-tools'], spawnOptions);
         await this.spawn('git', ['add', '.yarn'], spawnOptions);
 
         if (fse.existsSync(rcfile)) {
