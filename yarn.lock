@@ -454,7 +454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coge/environment@npm:^0.11.4, @coge/environment@workspace:packages/environment":
+"@coge/environment@npm:^0.11.5, @coge/environment@workspace:packages/environment":
   version: 0.0.0-use.local
   resolution: "@coge/environment@workspace:packages/environment"
   dependencies:
@@ -494,7 +494,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@coge/generator@npm:^0.7.4, @coge/generator@workspace:packages/generator":
+"@coge/generator@npm:^0.7.5, @coge/generator@workspace:packages/generator":
   version: 0.0.0-use.local
   resolution: "@coge/generator@workspace:packages/generator"
   dependencies:
@@ -4406,8 +4406,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "coge@workspace:packages/coge"
   dependencies:
-    "@coge/environment": "npm:^0.11.4"
-    "@coge/generator": "npm:^0.7.4"
+    "@coge/environment": "npm:^0.11.5"
+    "@coge/generator": "npm:^0.7.5"
     "@iarna/toml": "npm:^2.2.5"
     "@nutol/build": "npm:^0.2.17"
     "@types/ejs": "npm:^3.1.5"

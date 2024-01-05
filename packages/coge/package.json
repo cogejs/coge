@@ -1,6 +1,6 @@
 {
   "name": "coge",
-  "version": "0.12.5",
+  "version": "0.12.6",
   "description": "An efficient code generator.",
   "license": "MIT",
   "repository": "https://github.com/cogejs/coge",
@@ -47,8 +47,8 @@
     "test:metaverse": "jest metaverse"
   },
   "dependencies": {
-    "@coge/environment": "^0.11.4",
-    "@coge/generator": "^0.7.4",
+    "@coge/environment": "^0.11.5",
+    "@coge/generator": "^0.7.5",
     "@iarna/toml": "^2.2.5",
     "caporal": "^1.4.0",
     "chalk": "^4",
