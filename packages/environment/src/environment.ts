@@ -138,8 +138,8 @@ export class Environment extends Resolver {
         const returnPath = opts.packagePath
           ? module.packagePath
           : opts.generatorPath
-          ? path.posix.join(filename, '../../')
-          : filename;
+            ? path.posix.join(filename, '../../')
+            : filename;
         paths.push(returnPath);
         if (opts.singleResult) {
           return true;

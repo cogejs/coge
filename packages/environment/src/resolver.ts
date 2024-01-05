@@ -248,8 +248,8 @@ export class PackageLookup {
       return ignore
         ? p
         : ['/node_modules', '/.node_modules', '/.node_libraries', '/node'].find(dir => p.endsWith(dir))
-        ? p
-        : '';
+          ? p
+          : '';
     };
 
     // Default paths for each system
@@ -522,12 +522,15 @@ export abstract class Resolver {
 
     const aliases = this.aliases.slice(0).reverse();
 
-    return aliases.reduce((res, alias) => {
-      if (!alias.match.test(res)) {
-        return res;
-      }
+    return aliases.reduce(
+      (res, alias) => {
+        if (!alias.match.test(res)) {
+          return res;
+        }
 
-      return res.replace(alias.match, alias.value);
-    }, <string>match);
+        return res.replace(alias.match, alias.value);
+      },
+      <string>match,
+    );
   }
 }
