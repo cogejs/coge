@@ -1,3 +1,3 @@
 module.exports = {
-  reject: ['eslint']  
+  reject: ['eslint', '@typescript-eslint/parser', '@typescript-eslint/eslint-plugin']
 }
