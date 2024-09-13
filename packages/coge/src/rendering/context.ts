@@ -38,7 +38,7 @@ const capitalizedLocals = (locals: any) => Object.entries(locals).reduce(doCapit
 export const buildContext = (locals: any, context?: Context, ...extras: Record<string, any>[]) => {
   const localsWithDefaults = Object.assign({}, localsDefaults, locals, ...extras);
   const configHelpers =
-    typeof context?.helpers === 'function' ? context.helpers(locals, context) : context?.helpers ?? {};
+    typeof context?.helpers === 'function' ? context.helpers(locals, context) : (context?.helpers ?? {});
   return Object.assign(localsWithDefaults, capitalizedLocals(localsWithDefaults), {
     h: {...helpers, ...configHelpers},
   });

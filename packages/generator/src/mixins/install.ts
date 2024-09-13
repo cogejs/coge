@@ -114,7 +114,7 @@ ${skipInstall ? '' : ' If this fails, try running the command yourself.'}
       debug('scheduleInstall', installer, paths, options, spawnOptions);
       options = options ?? {};
       spawnOptions = spawnOptions ?? {};
-      paths = Array.isArray(paths) ? paths : paths?.split(' ') ?? [];
+      paths = Array.isArray(paths) ? paths : (paths?.split(' ') ?? []);
 
       let args: string[] = ['install'].concat(paths).concat(dargs(options));
 
