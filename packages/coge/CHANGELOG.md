@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/cogejs/coge/compare/coge@0.12.7...coge@0.12.8) (2024-09-13)
+
+
+### Bug Fixes
+
+* prettier ([7ae7c3c](https://github.com/cogejs/coge/commit/7ae7c3c0ad7bc476c9f38e8bb18a76c948e6df34))
+
+
+
+
+
 ## [0.12.7](https://github.com/cogejs/coge/compare/coge@0.12.6...coge@0.12.7) (2024-05-29)
 
 **Note:** Version bump only for package coge
